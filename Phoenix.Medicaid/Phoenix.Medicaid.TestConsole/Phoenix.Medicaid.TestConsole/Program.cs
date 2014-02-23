@@ -6,14 +6,14 @@ using Phoenix.Models.NHibernate;
 
 namespace Phoenix.Medicaid.TestConsole
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             var process = new MedicaidProcess();
             process.LogEvent("Started", EventTypes.Events.ApplicationStarted);
             process.RunMedicaidProcess();
-            process.LogEvent("Started", EventTypes.Events.ApplicationStopped);
+            process.LogEvent("Stopped", EventTypes.Events.ApplicationStopped);
 
             Console.ReadLine();
         }

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phoenix.Models", "..\..\Pho
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phoenix.Medicaid.TestConsole", "..\Phoenix.Medicaid.TestConsole\Phoenix.Medicaid.TestConsole\Phoenix.Medicaid.TestConsole.csproj", "{B06FCE11-8A2C-4DF8-9FFD-906BA34E78D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phoenix.GLinkAutomation.Core", "..\..\Phoenix.GLinkAutomation.Core\Phoenix.GLinkAutomation.Core.csproj", "{15D241E9-4DF9-4378-B3D8-F5CA691DAC76}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{B06FCE11-8A2C-4DF8-9FFD-906BA34E78D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B06FCE11-8A2C-4DF8-9FFD-906BA34E78D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B06FCE11-8A2C-4DF8-9FFD-906BA34E78D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15D241E9-4DF9-4378-B3D8-F5CA691DAC76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15D241E9-4DF9-4378-B3D8-F5CA691DAC76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15D241E9-4DF9-4378-B3D8-F5CA691DAC76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15D241E9-4DF9-4378-B3D8-F5CA691DAC76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
