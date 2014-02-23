@@ -15,6 +15,13 @@ namespace Phoenix.Medicaid.Service
         public void RunMedicaidProcess()
         {
             LogEvent("Running", EventTypes.Events.BeginCaseProcess);
+            
+            LogEvent("Starting GLink", EventTypes.Events.GLinkStarted);
+            GLinkFactory.Current().SetVisible(true);
+            GLinkFactory.Current().Connect();
+            GLinkFactory.Current().SetVisible(true);
+            Console.ReadLine();
+            GLinkFactory.Current().Disconnect();
         }
 
         public void LogEvent(string message, EventTypes.Events eventType)

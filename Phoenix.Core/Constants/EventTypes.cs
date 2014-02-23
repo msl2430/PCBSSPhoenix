@@ -12,6 +12,10 @@ namespace Phoenix.Core.Constants
         {
             ApplicationStarted = 100,
             BeginCaseProcess = 101,
+
+            //GLink Automation Events
+            GLinkStarted = 200,
+
             ApplicationStopped = 900
         }
     }

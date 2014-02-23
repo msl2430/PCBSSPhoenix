@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Configuration\BaseApplication.cs" />
     <Compile Include="Configuration\BaseService.cs" />
+    <Compile Include="Factories\GLinkFactory.cs" />
     <Compile Include="Logging\LoggingService.cs" />
     <Compile Include="MedicaidProcess.cs" />
     <Compile Include="MedicaidService.cs">
@@ -78,6 +79,10 @@
     <ProjectReference Include="..\..\..\Phoenix.Core\Phoenix.Core.csproj">
       <Project>{8608109b-6dd7-4dc8-a6d4-f5a4a180ecfa}</Project>
       <Name>Phoenix.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Phoenix.GLinkAutomation.Core\Phoenix.GLinkAutomation.Core.csproj">
+      <Project>{15d241e9-4df9-4378-b3d8-f5ca691dac76}</Project>
+      <Name>Phoenix.GLinkAutomation.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Phoenix.Models\Phoenix.Models.csproj">
       <Project>{59f1cdf7-1a90-49d1-8cf5-e1f92f25c617}</Project>

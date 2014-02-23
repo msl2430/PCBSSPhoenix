@@ -4,12 +4,14 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Phoenix.Medicaid.Service.Factories;
 using Phoenix.Medicaid.Service.Logging;
 
 namespace Phoenix.Medicaid.Service.Configuration
 {
     public abstract class BaseApplication
     {
+        public IGLinkFactory GLinkFactory { get; set; }
         public EventLog MedicaidEventLog { get; set; }
 
         private ILoggingService _loggingService { get; set; }
