@@ -15,6 +15,7 @@ namespace Phoenix.Core.Constants
 
             //GLink Automation Events
             GLinkStarted = 200,
+            GLinkConnected = 201,
 
             ApplicationStopped = 900
         }

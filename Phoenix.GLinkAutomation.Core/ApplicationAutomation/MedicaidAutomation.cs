@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using Glink;
 using Phoenix.GLinkAutomation.Core.Constants;
 using Phoenix.GLinkAutomation.Core.GLinkEventHandling;
@@ -16,6 +17,8 @@ namespace Phoenix.GLinkAutomation.Core.ApplicationAutomation
 
         string GetStringAtLocation(int x1, int y1, int x2, int y2);
         string GetField(int fieldId);
+        void StartConsoleMonitor();
+        void EndConsoleMonitor();
     }
 
     public class MedicaidAutomation : IMedicaidAutomation
@@ -53,6 +56,7 @@ namespace Phoenix.GLinkAutomation.Core.ApplicationAutomation
             GLinkApi.start();
             GLinkApi.noToolbar();
             GLinkEventHandling.Monitor(GlinkEventCodeEnum.GlinkEvent_STRING_RECEIVED);
+            GLinkEventHandling.Monitor(GlinkEventCodeEnum.GlinkEvent_TURN_RECEIVED);
             IsStarting = false;
         }
 
@@ -101,6 +105,16 @@ namespace Phoenix.GLinkAutomation.Core.ApplicationAutomation
         {
             var field = GLinkApi.getFields().item(fieldId);
             return field != null ? field.getString() : string.Empty;
+        }
+
+        public void StartConsoleMonitor()
+        {
+            GLinkEventHandling.ConsoleMonitor();
+        }
+
+        public void EndConsoleMonitor()
+        {
+            GLinkEventHandling.CancelMonitor();
         }
     }
 }

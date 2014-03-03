@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phoenix.Medicaid.Service", "Phoenix.Medicaid.Service\Phoenix.Medicaid.Service.csproj", "{9EF988E7-7D90-4C63-9848-D876BC9E6E1E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phoenix.Core", "..\..\Phoenix.Core\Phoenix.Core.csproj", "{8608109B-6DD7-4DC8-A6D4-F5A4A180ECFA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phoenix.Medicaid.Tests", "Phoenix.Medicaid.Tests\Phoenix.Medicaid.Tests.csproj", "{A92BDCCF-AFBA-4DAE-A4A5-81704AF0D991}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phoenix.Models", "..\..\Phoenix.Models\Phoenix.Models.csproj", "{59F1CDF7-1A90-49D1-8CF5-E1F92F25C617}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phoenix.Medicaid.TestConsole", "..\Phoenix.Medicaid.TestConsole\Phoenix.Medicaid.TestConsole\Phoenix.Medicaid.TestConsole.csproj", "{B06FCE11-8A2C-4DF8-9FFD-906BA34E78D1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phoenix.GLinkAutomation.Core", "..\..\Phoenix.GLinkAutomation.Core\Phoenix.GLinkAutomation.Core.csproj", "{15D241E9-4DF9-4378-B3D8-F5CA691DAC76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phoenix.Medicaid.Service", "Phoenix.Medicaid.Service.csproj", "{9EF988E7-7D90-4C63-9848-D876BC9E6E1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phoenix.Medicaid.TestConsole", "..\Phoenix.Medicaid.TestConsole\Phoenix.Medicaid.TestConsole.csproj", "{B06FCE11-8A2C-4DF8-9FFD-906BA34E78D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phoenix.Medicaid.Tests", "..\Phoenix.Medicaid.Tests\Phoenix.Medicaid.Tests.csproj", "{A92BDCCF-AFBA-4DAE-A4A5-81704AF0D991}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,30 +21,30 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9EF988E7-7D90-4C63-9848-D876BC9E6E1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9EF988E7-7D90-4C63-9848-D876BC9E6E1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9EF988E7-7D90-4C63-9848-D876BC9E6E1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9EF988E7-7D90-4C63-9848-D876BC9E6E1E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8608109B-6DD7-4DC8-A6D4-F5A4A180ECFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8608109B-6DD7-4DC8-A6D4-F5A4A180ECFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8608109B-6DD7-4DC8-A6D4-F5A4A180ECFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8608109B-6DD7-4DC8-A6D4-F5A4A180ECFA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A92BDCCF-AFBA-4DAE-A4A5-81704AF0D991}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A92BDCCF-AFBA-4DAE-A4A5-81704AF0D991}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A92BDCCF-AFBA-4DAE-A4A5-81704AF0D991}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A92BDCCF-AFBA-4DAE-A4A5-81704AF0D991}.Release|Any CPU.Build.0 = Release|Any CPU
 		{59F1CDF7-1A90-49D1-8CF5-E1F92F25C617}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{59F1CDF7-1A90-49D1-8CF5-E1F92F25C617}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59F1CDF7-1A90-49D1-8CF5-E1F92F25C617}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59F1CDF7-1A90-49D1-8CF5-E1F92F25C617}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B06FCE11-8A2C-4DF8-9FFD-906BA34E78D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B06FCE11-8A2C-4DF8-9FFD-906BA34E78D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B06FCE11-8A2C-4DF8-9FFD-906BA34E78D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B06FCE11-8A2C-4DF8-9FFD-906BA34E78D1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{15D241E9-4DF9-4378-B3D8-F5CA691DAC76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{15D241E9-4DF9-4378-B3D8-F5CA691DAC76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15D241E9-4DF9-4378-B3D8-F5CA691DAC76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15D241E9-4DF9-4378-B3D8-F5CA691DAC76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EF988E7-7D90-4C63-9848-D876BC9E6E1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EF988E7-7D90-4C63-9848-D876BC9E6E1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EF988E7-7D90-4C63-9848-D876BC9E6E1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EF988E7-7D90-4C63-9848-D876BC9E6E1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B06FCE11-8A2C-4DF8-9FFD-906BA34E78D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B06FCE11-8A2C-4DF8-9FFD-906BA34E78D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B06FCE11-8A2C-4DF8-9FFD-906BA34E78D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B06FCE11-8A2C-4DF8-9FFD-906BA34E78D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A92BDCCF-AFBA-4DAE-A4A5-81704AF0D991}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A92BDCCF-AFBA-4DAE-A4A5-81704AF0D991}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A92BDCCF-AFBA-4DAE-A4A5-81704AF0D991}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A92BDCCF-AFBA-4DAE-A4A5-81704AF0D991}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

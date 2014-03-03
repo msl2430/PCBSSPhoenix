@@ -29,5 +29,15 @@ namespace Phoenix.GLinkAutomation.Core.ApplicationAutomation.Mock
         {
             return string.Empty;
         }
+
+        public void StartConsoleMonitor()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndConsoleMonitor()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

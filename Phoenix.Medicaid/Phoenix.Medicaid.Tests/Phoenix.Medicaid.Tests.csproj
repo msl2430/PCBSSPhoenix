@@ -52,15 +52,14 @@
   </Choose>
   <ItemGroup>
     <Compile Include="LoggingTests.cs" />
-    <Compile Include="Mocks\MockMedicaidAutomation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Phoenix.Core\Phoenix.Core.csproj">
+    <ProjectReference Include="..\..\Phoenix.Core\Phoenix.Core.csproj">
       <Project>{8608109b-6dd7-4dc8-a6d4-f5a4a180ecfa}</Project>
       <Name>Phoenix.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Phoenix.GLinkAutomation.Core\Phoenix.GLinkAutomation.Core.csproj">
+    <ProjectReference Include="..\..\Phoenix.GLinkAutomation.Core\Phoenix.GLinkAutomation.Core.csproj">
       <Project>{15d241e9-4df9-4378-b3d8-f5ca691dac76}</Project>
       <Name>Phoenix.GLinkAutomation.Core</Name>
     </ProjectReference>

@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using Glink;
 using Phoenix.GLinkAutomation.Core.Constants;
-using GlinkEvent = GlinkApi.GlinkEvent;
+using Phoenix.GLinkAutomation.Core.Exceptions;
 
 namespace Phoenix.GLinkAutomation.Core.GLinkEventHandling
 {
@@ -15,6 +11,7 @@ namespace Phoenix.GLinkAutomation.Core.GLinkEventHandling
         int? GetGlinkEvent();
         bool Monitor(GlinkEventCodeEnum monitorEvent);
         void CancelMonitor();
+        void ConsoleMonitor();
     }
 
     public class GLinkEventHandling : IGLinkEventHandling
@@ -44,6 +41,8 @@ namespace Phoenix.GLinkAutomation.Core.GLinkEventHandling
             {
                 if (GLinkEvent != (int) monitorEvent && !CancelEventMonitor)
                 {
+                    if (i >= MonitorTimeout)
+                        throw new GLinkCommunicationError();
                     Thread.Sleep(Events.WaitTime);
                     continue;
                 }
@@ -51,6 +50,17 @@ namespace Phoenix.GLinkAutomation.Core.GLinkEventHandling
                 return true;
             }
             return false;
+        }
+
+        public void ConsoleMonitor()
+        {
+            int? tempEvent = null;
+            while (!CancelEventMonitor)
+            {
+                if (GLinkEvent == tempEvent) continue;
+                tempEvent = GLinkEvent;
+                Console.WriteLine("{0}: {1}", DateTime.Now, GLinkEvent != null ? Enum.GetName(typeof (GlinkEventCodeEnum), GLinkEvent) : "no event");
+            }
         }
 
         public void CancelMonitor()

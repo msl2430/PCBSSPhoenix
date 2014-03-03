@@ -51,6 +51,7 @@
     <Compile Include="ApplicationAutomation\Mock\MockMedicaidAutomation.cs" />
     <Compile Include="Constants\Commands.cs" />
     <Compile Include="Constants\Events.cs" />
+    <Compile Include="Exceptions\GLinkCommunicationError.cs" />
     <Compile Include="GLinkEventHandling\GLinkEventHandling.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
