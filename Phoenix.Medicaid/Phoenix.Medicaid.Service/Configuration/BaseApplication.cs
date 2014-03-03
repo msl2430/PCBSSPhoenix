@@ -11,8 +11,13 @@ namespace Phoenix.Medicaid.Service.Configuration
 {
     public abstract class BaseApplication
     {
-        public IGLinkFactory GLinkFactory { get; set; }
-        public EventLog MedicaidEventLog { get; set; }
+       public EventLog MedicaidEventLog { get; set; }
+
+        private MedicaidGLinkProcess _medicaidGLinkProcess;
+        public MedicaidGLinkProcess MedicaidGLinkProcess
+        {
+            get { return _medicaidGLinkProcess ?? (_medicaidGLinkProcess = new MedicaidGLinkProcess()); }
+        }
 
         private ILoggingService _loggingService { get; set; }
         protected ILoggingService LoggingService

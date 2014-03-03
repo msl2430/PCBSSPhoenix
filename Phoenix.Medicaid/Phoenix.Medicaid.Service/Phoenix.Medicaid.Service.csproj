@@ -54,6 +54,7 @@
     <Compile Include="Configuration\BaseService.cs" />
     <Compile Include="Factories\GLinkFactory.cs" />
     <Compile Include="Logging\LoggingService.cs" />
+    <Compile Include="MedicaidGLinkProcess.cs" />
     <Compile Include="MedicaidProcess.cs" />
     <Compile Include="MedicaidService.cs">
       <SubType>Component</SubType>

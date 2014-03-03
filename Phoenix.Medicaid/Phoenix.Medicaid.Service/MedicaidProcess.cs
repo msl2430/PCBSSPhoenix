@@ -17,15 +17,14 @@ namespace Phoenix.Medicaid.Service
                 LogEvent("Running", EventTypes.Events.BeginCaseProcess);
 
                 LogEvent("Starting GLink", EventTypes.Events.GLinkStarted);
-                GLinkFactory.Current().Connect();
-                GLinkFactory.Current().SetVisible(true);
+                MedicaidGLinkProcess.ConnectToMedicaid();
                 LogEvent("GLink Connected", EventTypes.Events.GLinkConnected);
                 Console.ReadLine();
-                GLinkFactory.Current().Disconnect();
+                
             }
             catch (Exception ex)
             {
-                Console.WriteLine("{0}: {1} ({2})", DateTime.Now, ex.Message, ex.Message);
+                Console.WriteLine("{0}: {1} (Run Medicaid Process)", DateTime.Now, ex.Message);
             }
         }
 
