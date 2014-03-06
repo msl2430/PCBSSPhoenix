@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceProcess;
@@ -13,7 +13,8 @@ namespace Phoenix.Medicaid.Service
         /// The main entry point for the application.
         /// </summary>
         static void Main()
-        {
+        {NHibernateProfilerBootstrapper.PreStart();
+
             var servicesToRun = new ServiceBase[]
                                 {
                                     new MedicaidService(),
@@ -22,3 +23,4 @@ namespace Phoenix.Medicaid.Service
         }
     }
 }
+

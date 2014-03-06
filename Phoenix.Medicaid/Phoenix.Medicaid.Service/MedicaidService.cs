@@ -22,7 +22,6 @@ namespace Phoenix.Medicaid.Service
             _medicaidProcess = new MedicaidProcess()
                                {
                                    MedicaidEventLog = medicaidEventLogger,
-                                   GLinkFactory = new GLinkFactory(Convert.ToBoolean(ConfigurationManager.AppSettings["IsDebug"]))
                                };
         }
 

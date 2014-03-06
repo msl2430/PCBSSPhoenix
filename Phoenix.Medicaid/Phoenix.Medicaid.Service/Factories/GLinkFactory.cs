@@ -1,33 +1,38 @@
-﻿using Phoenix.GLinkAutomation.Core.ApplicationAutomation;
+﻿using System;
+using System.Configuration;
+using Phoenix.GLinkAutomation.Core.ApplicationAutomation;
 using Phoenix.GLinkAutomation.Core.ApplicationAutomation.Mock;
 
 namespace Phoenix.Medicaid.Service.Factories
 {
     public interface IGLinkFactory
     {
-        IMedicaidAutomation Current();
+        IMedicaidAutomation MedicaidAutomation { get; }
     }
 
     public class GLinkFactory : IGLinkFactory
     {
-        private IMedicaidAutomation MedicaidAutomation { get; set; }
+        private IMedicaidAutomation _medicaidAutomation { get; set; }
         private bool IsDebug { get; set; }
 
-        public GLinkFactory(bool isDebug)
+        public GLinkFactory()
         {
-            IsDebug = isDebug;
+            IsDebug = Convert.ToBoolean(ConfigurationManager.AppSettings["IsDebug"]);
         }
 
-        public IMedicaidAutomation Current()
+        public IMedicaidAutomation MedicaidAutomation
         {
-            if (MedicaidAutomation != null) return MedicaidAutomation;
+            get
+            {
+                if (_medicaidAutomation != null) return _medicaidAutomation;
 
-            if (IsDebug)
-                MedicaidAutomation = new MockMedicaidAutomation();
-            else
-                MedicaidAutomation = new MedicaidAutomation(@"C:\GlPro\PhoenixMedi.02");
+                if (IsDebug)
+                    _medicaidAutomation = new MockMedicaidAutomation();
+                else
+                    _medicaidAutomation = new MedicaidAutomation(@"C:\GlPro\PhoenixMedi.02");
 
-            return MedicaidAutomation;
+                return _medicaidAutomation;
+            }
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Phoenix.Medicaid.Service.Factories;
 using Phoenix.Medicaid.Service.Logging;
+using Phoenix.Medicaid.Service.Services;
 
 namespace Phoenix.Medicaid.Service.Configuration
 {
@@ -13,8 +14,8 @@ namespace Phoenix.Medicaid.Service.Configuration
     {
        public EventLog MedicaidEventLog { get; set; }
 
-        private MedicaidGLinkProcess _medicaidGLinkProcess;
-        public MedicaidGLinkProcess MedicaidGLinkProcess
+        private IMedicaidGLinkProcess _medicaidGLinkProcess;
+        public IMedicaidGLinkProcess MedicaidGLinkProcess
         {
             get { return _medicaidGLinkProcess ?? (_medicaidGLinkProcess = new MedicaidGLinkProcess()); }
         }
@@ -28,5 +29,11 @@ namespace Phoenix.Medicaid.Service.Configuration
                 return _loggingService;
             }
         }
+
+        //private IMedicaidFormFieldService _medicaidFormFieldService { get; set; }
+        //protected IMedicaidFormFieldService MedicaidFormFieldService
+        //{
+        //    get { return _medicaidFormFieldService = _medicaidFormFieldService ?? (_medicaidFormFieldService = new MedicaidFormFieldService()); }
+        //}
     }
 }

@@ -34,10 +34,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Iesi.Collections">
-      <HintPath>..\..\Phoenix.Medicaid.Service\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+      <HintPath>..\Phoenix.Medicaid.Service\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
-      <HintPath>..\..\Phoenix.Medicaid.Service\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
+      <HintPath>..\Phoenix.Medicaid.Service\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -69,6 +69,10 @@
     <ProjectReference Include="..\..\Phoenix.Models\Phoenix.Models.csproj">
       <Project>{59f1cdf7-1a90-49d1-8cf5-e1f92f25c617}</Project>
       <Name>Phoenix.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Phoenix.Medicaid.Models\Phoenix.Medicaid.Models.csproj">
+      <Project>{70a091d2-170e-49ed-b8e6-bd7ce2315f78}</Project>
+      <Name>Phoenix.Medicaid.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\Phoenix.Medicaid.Service\Phoenix.Medicaid.Service.csproj">
       <Project>{9ef988e7-7d90-4c63-9848-d876bc9e6e1e}</Project>

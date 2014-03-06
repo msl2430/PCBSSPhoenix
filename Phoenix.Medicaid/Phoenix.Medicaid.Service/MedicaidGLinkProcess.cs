@@ -9,20 +9,52 @@ using Phoenix.Medicaid.Service.Factories;
 
 namespace Phoenix.Medicaid.Service
 {
-    public class MedicaidGLinkProcess
+    public interface IMedicaidGLinkProcess
     {
-        private static IGLinkFactory GLinkFactory { get; set; }
+        void ConnectToMedicaid();
+        void StartConsoleMonitorThread();
+        void EndConsoleMonitorThread();
+    }
+
+    public class MedicaidGLinkProcess : IMedicaidGLinkProcess
+    {
+        private IGLinkFactory _glinkFactory { get; set; }
+        private IGLinkFactory GLinkFactory { get { return _glinkFactory ?? (_glinkFactory = new GLinkFactory()); } }
 
         public void ConnectToMedicaid()
         {
             try
             {
-                GLinkFactory.Current().Connect();
-                GLinkFactory.Current().SetVisible(true);
+                GLinkFactory.MedicaidAutomation.Connect();
+                GLinkFactory.MedicaidAutomation.SetVisible(true);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("{0}: {1} (Connecting to Medicaid)", DateTime.Now, ex.Message);
+                Console.WriteLine("{0}: {1} (ConnectingToMedicaid)", DateTime.Now, ex.Message);
+            }
+        }
+
+        public void StartConsoleMonitorThread()
+        {
+            try
+            {
+                GLinkFactory.MedicaidAutomation.StartConsoleMonitor();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("{0}: {1} (StartConsoleMonitorThread)", DateTime.Now, ex.Message);
+            }
+        }
+
+        public void EndConsoleMonitorThread()
+        {
+            try
+            {
+                GLinkFactory.MedicaidAutomation.EndConsoleMonitor();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("{0}: {1} (EndConsoleMonitorThread)", DateTime.Now, ex.Message);
             }
         }
     }
