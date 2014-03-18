@@ -9,6 +9,7 @@ namespace Phoenix.GLinkAutomation.Core.ApplicationAutomation
     public interface IMedicaidAutomation
     {
         void Connect();
+        bool IsConnected { get; }
         void Disconnect();
         void SetVisible(bool isVisible);
         void SubmitField(int fieldId, string stringToSend);
@@ -58,6 +59,11 @@ namespace Phoenix.GLinkAutomation.Core.ApplicationAutomation
             GLinkEventHandling.Monitor(GlinkEventCodeEnum.GlinkEvent_STRING_RECEIVED);
             GLinkEventHandling.Monitor(GlinkEventCodeEnum.GlinkEvent_TURN_RECEIVED);
             IsStarting = false;
+        }
+
+        public bool IsConnected
+        {
+            get { return GLinkApi.isConnected(); }
         }
 
         public void Disconnect()

@@ -10,6 +10,11 @@ namespace Phoenix.GLinkAutomation.Core.ApplicationAutomation.Mock
     {
         public void Connect() {}
 
+        public bool IsConnected
+        {
+            get { return true; }
+        }
+
         public void Disconnect() {}
         
         public void SetVisible(bool isVisible) {}
@@ -22,6 +27,8 @@ namespace Phoenix.GLinkAutomation.Core.ApplicationAutomation.Mock
 
         public string GetStringAtLocation(int x1, int y1, int x2, int y2)
         {
+            if (x1 == 7 && y1 == 12 && x2 == 13 && y2 == 12) return "LOGONID";
+            if (x1 == 1 && y1 == 4 && x2 == 3 && y2 == 4) return "ACF";
             return string.Empty;
         }
 

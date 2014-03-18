@@ -13,7 +13,7 @@ namespace Phoenix.Medicaid.Service.Logging
 {
     public interface ILoggingService
     {
-        void LogEvent(string message, EventTypes.Events eventType, bool savetoDatabase);
+        void LogEvent(string message, int eventType, bool savetoDatabase);
     }
 
     public class LoggingService : BaseService, ILoggingService
@@ -29,7 +29,7 @@ namespace Phoenix.Medicaid.Service.Logging
             SaveToSystem = false;
         }
 
-        public void LogEvent(string message, EventTypes.Events eventType, bool savetoDatabase)
+        public void LogEvent(string message, int eventType, bool savetoDatabase)
         {
             if (savetoDatabase) 
                 SaveEventToDatabase(message, eventType);
@@ -44,7 +44,7 @@ namespace Phoenix.Medicaid.Service.Logging
         /// </summary>
         /// <param name="message"></param>
         /// <param name="eventType"></param>
-        private void SaveEventToConsole(string message, EventTypes.Events eventType)
+        private void SaveEventToConsole(string message, int eventType)
         {
             Console.WriteLine("({0}) {1}: {2}", "Medicaid Service", DateTime.Now.ToString("HH:mm:ss"), message);
         }
@@ -54,7 +54,7 @@ namespace Phoenix.Medicaid.Service.Logging
         /// </summary>
         /// <param name="message"></param>
         /// <param name="eventType"></param>
-        private void SaveEventToDatabase(string message, EventTypes.Events eventType)
+        private void SaveEventToDatabase(string message, int eventType)
         {
             ApplicationEventService.SaveEvent(message, ApplicationConstants.Applications.PhoenixMedicaidService, eventType);
         }
@@ -64,7 +64,7 @@ namespace Phoenix.Medicaid.Service.Logging
         /// </summary>
         /// <param name="message"></param>
         /// <param name="eventType"></param>
-        private void SaveEventToSystem(string message, EventTypes.Events eventType)
+        private void SaveEventToSystem(string message, int eventType)
         {
             if (!EventLog.SourceExists("Phoenix Medicaid Service"))
             {

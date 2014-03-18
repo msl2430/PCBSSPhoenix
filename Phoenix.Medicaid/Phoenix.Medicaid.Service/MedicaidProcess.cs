@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 using Phoenix.Core.Constants;
+using Phoenix.Core.Extensions;
 using Phoenix.Medicaid.Models;
 using Phoenix.Medicaid.Models.OptForms;
 using Phoenix.Medicaid.Service.Configuration;
@@ -14,21 +15,20 @@ namespace Phoenix.Medicaid.Service
     public class MedicaidProcess : BaseApplication
     {
         private BackgroundWorker BgWorker { get; set; }
-
+     
         public void RunMedicaidProcess()
         {
             try
             {
-                LogEvent("Running", EventTypes.Events.BeginCaseProcess);
-                LogEvent("Starting GLink", EventTypes.Events.GLinkStarted);
-                MedicaidGLinkProcess.ConnectToMedicaid();
-                LogEvent("GLink Connected", EventTypes.Events.GLinkConnected);
+                LogEvent("Running", EventTypes.Events.BeginCaseProcess.ToInt());
+                
                 var opt61Form = new Opt61Form(MedicaidFormFieldService.Current.GetMedicaidFields().Where(f => f.MedicaidFormId == FormConstants.MedicaidForms.Opt61).ToList());
                 Console.WriteLine("Opt 61 Form Initialized {0} fields created", opt61Form.GetType().GetProperties().Count());
                 var opt64Form = new Opt64Form(MedicaidFormFieldService.Current.GetMedicaidFields().Where(f => f.MedicaidFormId == FormConstants.MedicaidForms.Opt64).ToList());
                 Console.WriteLine("Opt 64 Form Initialized {0} fields created", opt64Form.GetType().GetProperties().Count());
                 var opt66Form = new Opt66Form(MedicaidFormFieldService.Current.GetMedicaidFields().Where(f => f.MedicaidFormId == FormConstants.MedicaidForms.Opt66).ToList());
                 Console.WriteLine("Opt 66 Form Initialized {0} fields created", opt66Form.GetType().GetProperties().Count());
+                StartMedicaidCaseSubmission();
                 Console.ReadLine();                
             }
             catch (Exception ex)
@@ -37,7 +37,30 @@ namespace Phoenix.Medicaid.Service
             }
         }
 
-        public void LogEvent(string message, EventTypes.Events eventType)
+        private void StartMedicaidCaseSubmission()
+        {
+            LogEvent("Starting GLink", EventTypes.Events.GLinkStarted.ToInt());
+            MedicaidGLinkProcess.ConnectToMedicaid();
+            LogEvent("GLink Connected", EventTypes.Events.GLinkConnected.ToInt());
+            LogEvent("Logging in", EventTypes.Events.GLinkConnected.ToInt());
+            MedicaidGLinkProcess.LoginToMedicaid("R94LEVI", "PHOENIX0");
+            LogEvent("Logged in to Medicaid", EventTypes.MedicaidEvents.LoggingInToMedicaid.ToInt());
+        }
+
+        private void SubmitOpt61(Opt61Form opt61Form)
+        {
+            if (opt61Form.AddressAction.Data == "A" && (opt61Form.PersonNumber.Data == "01" || opt61Form.PersonNumber.Data == "02" || opt61Form.PersonNumber.Data == "05"))
+            {
+                //TODO Process as family
+            }
+            if(opt61Form.AlienType.Data == "4" && (opt61Form.EntryDate - DateTime.Now).TotalDays <= 59)
+            {
+                //TODO Hold case 
+            }
+
+        }
+
+        public void LogEvent(string message, int eventType)
         {
             LoggingService.LogEvent(message, eventType, false);
         }

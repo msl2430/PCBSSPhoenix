@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Phoenix.Medicaid.Models.FormFields;
 using Phoenix.Models.Models.Medicaid;
 
@@ -43,10 +44,12 @@ namespace Phoenix.Medicaid.Models.OptForms
         public MedicaidFormField Supervisor { get; set; }
         public MedicaidFormField Worker { get; set; }
 
+        public DateTime EntryDate { get { return !string.IsNullOrEmpty(TempDate.Data) ? Convert.ToDateTime(TempDate.Data.Insert(2, "/").Insert(5, "/")) : DateTime.Now;} }
+
         public Opt61Form(IList<MedicaidField> fields)
         {
             base.Initialize(fields);
         } 
 
-    }
+    } 
 }

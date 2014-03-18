@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Consants\FormConstants.cs" />
     <Compile Include="FormFields\MedicaidFormField.cs" />
     <Compile Include="OptForms\MedicaidOptForm.cs" />
     <Compile Include="OptForms\Opt61Form.cs" />

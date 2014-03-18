@@ -19,5 +19,11 @@ namespace Phoenix.Core.Constants
 
             ApplicationStopped = 900
         }
+
+        public enum MedicaidEvents
+        {
+            LoggingInToMedicaid = 2000,
+
+        }
     }
 }

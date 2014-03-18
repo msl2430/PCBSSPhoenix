@@ -16,5 +16,22 @@ namespace Phoenix.Medicaid.Models.FormFields
             Length = field.FieldLength;
             Data = " ".PadRight(Length, ' ');
         }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            return obj.GetType() == GetType() && Equals((MedicaidFormField) obj);
+        }
+
+        protected bool Equals(MedicaidFormField other)
+        {
+            return string.Equals(FieldName, other.FieldName) && FieldNumber == other.FieldNumber && Length == other.Length && string.Equals(Data, other.Data);
+        }
+        
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Configuration;
 using System.ServiceProcess;
 using System.Threading;
 using Phoenix.Core.Constants;
+using Phoenix.Core.Extensions;
 using Phoenix.Medicaid.Service.Factories;
 
 namespace Phoenix.Medicaid.Service
@@ -27,7 +28,7 @@ namespace Phoenix.Medicaid.Service
 
         protected override void OnStart(string[] args)
         {
-            _medicaidProcess.LogEvent("Phoenix Medicaid service started", EventTypes.Events.ApplicationStarted);
+            _medicaidProcess.LogEvent("Phoenix Medicaid service started", EventTypes.Events.ApplicationStarted.ToInt());
             _processRunning = false;
             Thread.Sleep(5000);
             _callback = new Timer(RunMedicaidProcess, null, 5000, _interval);
@@ -35,7 +36,7 @@ namespace Phoenix.Medicaid.Service
 
         protected override void OnStop()
         {
-            _medicaidProcess.LogEvent("Phoenix Medicaid service started", EventTypes.Events.ApplicationStarted);
+            _medicaidProcess.LogEvent("Phoenix Medicaid service started", EventTypes.Events.ApplicationStarted.ToInt());
             _callback.Dispose();
         }
 
