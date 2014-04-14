@@ -6,9 +6,9 @@ namespace Phoenix.Medicaid.Models.OptForms
 {
     public sealed class Opt64Form : MedicaidOptForm
     {
-        public MedicaidFormField PgmNumber { get; set; }
-        public MedicaidFormField EffectiveDate { get; set; }
-        public MedicaidFormField TermDate { get; set; }
+        public IEnumerable<MedicaidFormField> PgmNumber { get; set; }
+        public IEnumerable<MedicaidFormField> EffectiveDate { get; set; }
+        public IEnumerable<MedicaidFormField> TermDate { get; set; }
 
         public Opt64Form(IList<MedicaidField> fields)
         {

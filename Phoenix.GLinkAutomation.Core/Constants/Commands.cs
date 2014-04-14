@@ -15,6 +15,7 @@ namespace Phoenix.GLinkAutomation.Core.Constants
             public const string Blinking = @"-536861665";
             public const string Red = @"-1073741700";
             public const int Transmit = (int)GlinkKeyEnum.GlinkKey_ENTER;
+            public const int F9 = (int) GlinkKeyEnum.GlinkKey_F9;
         }
     }
 }

@@ -5,7 +5,7 @@ using Phoenix.Models.Models.Medicaid;
 
 namespace Phoenix.Medicaid.Models.OptForms
 {
-    public abstract class MedicaidOptForm
+    public class MedicaidOptForm
     {
         public MedicaidFormField ActionCode { get; set; }
         public MedicaidFormField CaseNumber { get; set; }
@@ -20,8 +20,16 @@ namespace Phoenix.Medicaid.Models.OptForms
                 var field = fields.FirstOrDefault(f => f.FieldName == propInfo.Name);
                 if (field != null)
                 {
-                    propInfo.SetValue(this, new MedicaidFormField(field), null);
+                    if (propInfo.PropertyType == typeof(IEnumerable<MedicaidFormField>))
+                    {
+                        propInfo.SetValue(this, new List<MedicaidFormField>(), null);
+                    }
+                    else
+                    {
+                        propInfo.SetValue(this, new MedicaidFormField(field), null);
+                    }
                 }
+                
             }
         }
     }

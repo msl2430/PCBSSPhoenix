@@ -29,15 +29,15 @@ namespace Phoenix.Medicaid.Models.OptForms
         public MedicaidFormField PriorPersonNumber { get; set; }
         public MedicaidFormField AlienType { get; set; }
         public MedicaidFormField TempDate { get; set; }
-        public MedicaidFormField EffectiveDate { get; set; }
-        public MedicaidFormField TermDate { get; set; }
-        public MedicaidFormField AddCode { get; set; }
-        public MedicaidFormField TrmCode { get; set; }
-        public MedicaidFormField Pgm { get; set; }
-        public MedicaidFormField Supv { get; set; }
-        public MedicaidFormField Res { get; set; }
-        public MedicaidFormField ExtType { get; set; }
-        public MedicaidFormField PregnancyDueDate { get; set; }
+        public IEnumerable<MedicaidFormField> EffectiveDate { get; set; }
+        public IEnumerable<MedicaidFormField> TermDate { get; set; }
+        public IEnumerable<MedicaidFormField> AddCode { get; set; }
+        public IEnumerable<MedicaidFormField> TrmCode { get; set; }
+        public IEnumerable<MedicaidFormField> Pgm { get; set; }
+        public IEnumerable<MedicaidFormField> Supv { get; set; }
+        public IEnumerable<MedicaidFormField> Res { get; set; }
+        public IEnumerable<MedicaidFormField> ExtType { get; set; }
+        public IEnumerable<MedicaidFormField> PregnancyDueDate { get; set; }
         public MedicaidFormField AddressAction { get; set; }
         public MedicaidFormField PersonAction { get; set; }
         public MedicaidFormField EligSeg { get; set; }

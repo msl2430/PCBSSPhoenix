@@ -23,7 +23,7 @@ namespace Phoenix.Core.Constants
         public enum MedicaidEvents
         {
             LoggingInToMedicaid = 2000,
-
+            ProcessOpt61 = 2001,
         }
     }
 }

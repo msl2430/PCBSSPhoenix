@@ -3,6 +3,7 @@ using System.Threading;
 using Glink;
 using Phoenix.GLinkAutomation.Core.Constants;
 using Phoenix.GLinkAutomation.Core.GLinkEventHandling;
+using Phoenix.Medicaid.Models.FormFields;
 
 namespace Phoenix.GLinkAutomation.Core.ApplicationAutomation
 {
@@ -13,6 +14,7 @@ namespace Phoenix.GLinkAutomation.Core.ApplicationAutomation
         void Disconnect();
         void SetVisible(bool isVisible);
         void SubmitField(int fieldId, string stringToSend);
+        void SubmitField(MedicaidFormField field);
         void TransmitPage();
         void SendStringToCursorAndTransmit(string stringToSend);
 
@@ -20,6 +22,7 @@ namespace Phoenix.GLinkAutomation.Core.ApplicationAutomation
         string GetField(int fieldId);
         void StartConsoleMonitor();
         void EndConsoleMonitor();
+        void SendCommandKey(int key);
     }
 
     public class MedicaidAutomation : IMedicaidAutomation
@@ -85,9 +88,23 @@ namespace Phoenix.GLinkAutomation.Core.ApplicationAutomation
                 field.setString(stringToSend);
         }
 
+        public void SubmitField(MedicaidFormField field)
+        {
+            var fld = GLinkApi.getFields().item(field.FieldNumber);
+            if (fld != null)
+                fld.setString(field.Data);
+        }
+
         public void TransmitPage()
         {
             GLinkApi.sendCommandKey(Commands.GLinkCommands.Transmit);
+            GLinkEventHandling.Monitor(GlinkEventCodeEnum.GlinkEvent_STRING_RECEIVED);
+            Thread.Sleep(Events.WaitTime);
+        }
+
+        public void SendCommandKey(int key)
+        {
+            GLinkApi.sendCommandKey(key);
             GLinkEventHandling.Monitor(GlinkEventCodeEnum.GlinkEvent_STRING_RECEIVED);
             Thread.Sleep(Events.WaitTime);
         }

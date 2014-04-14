@@ -8,6 +8,10 @@ namespace Phoenix.Medicaid.Models.FormFields
         public int FieldNumber { get; set; }
         public int Length { get; set; }
         public string Data { get; set; }
+        /// <summary>
+        /// Field needed to input into Medicaid
+        /// </summary>
+        public MedicaidFormField RequiredField { get; set; }
 
         public MedicaidFormField(MedicaidField field)
         {
@@ -15,6 +19,12 @@ namespace Phoenix.Medicaid.Models.FormFields
             FieldNumber = field.FieldNumber;
             Length = field.FieldLength;
             Data = " ".PadRight(Length, ' ');
+            RequiredField = null;
+        }
+
+        public bool IsFieldEmpty()
+        {
+            return string.IsNullOrEmpty(Data);
         }
 
         public override bool Equals(object obj)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Phoenix.Medicaid.Models.FormFields;
 
 namespace Phoenix.GLinkAutomation.Core.ApplicationAutomation.Mock
 {
@@ -20,6 +21,8 @@ namespace Phoenix.GLinkAutomation.Core.ApplicationAutomation.Mock
         public void SetVisible(bool isVisible) {}
 
         public void SubmitField(int fieldId, string stringToSend) {}
+
+        public void SubmitField(MedicaidFormField field) { }
 
         public void TransmitPage() {}
 
@@ -45,6 +48,11 @@ namespace Phoenix.GLinkAutomation.Core.ApplicationAutomation.Mock
         public void EndConsoleMonitor()
         {
             throw new NotImplementedException();
+        }
+
+        public void SendCommandKey(int key)
+        {
+            
         }
     }
 }

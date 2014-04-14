@@ -8,6 +8,8 @@ namespace Phoenix.Models.Mappings.Medicaid
     {
         public MedicaidFieldMap()
         {
+            ReadOnly();
+
             Schema("Phoenix");
             Table("MedicaidFields");
 
@@ -18,6 +20,7 @@ namespace Phoenix.Models.Mappings.Medicaid
             Map(mf => mf.FieldNumber);
             Map(mf => mf.FieldLength);
             Map(mf => mf.StartIndex);
+            Map(mf => mf.RequiredFieldNumber).Nullable();
         }
     }
 }

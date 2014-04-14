@@ -19,15 +19,14 @@ namespace Phoenix.Medicaid.Service
         public void RunMedicaidProcess()
         {
             try
-            {
+            {               
                 LogEvent("Running", EventTypes.Events.BeginCaseProcess.ToInt());
                 
-                var opt61Form = new Opt61Form(MedicaidFormFieldService.Current.GetMedicaidFields().Where(f => f.MedicaidFormId == FormConstants.MedicaidForms.Opt61).ToList());
-                Console.WriteLine("Opt 61 Form Initialized {0} fields created", opt61Form.GetType().GetProperties().Count());
-                var opt64Form = new Opt64Form(MedicaidFormFieldService.Current.GetMedicaidFields().Where(f => f.MedicaidFormId == FormConstants.MedicaidForms.Opt64).ToList());
-                Console.WriteLine("Opt 64 Form Initialized {0} fields created", opt64Form.GetType().GetProperties().Count());
-                var opt66Form = new Opt66Form(MedicaidFormFieldService.Current.GetMedicaidFields().Where(f => f.MedicaidFormId == FormConstants.MedicaidForms.Opt66).ToList());
-                Console.WriteLine("Opt 66 Form Initialized {0} fields created", opt66Form.GetType().GetProperties().Count());
+                
+                //var opt64Form = new Opt64Form(MedicaidFormFieldService.Current.GetMedicaidFields().Where(f => f.MedicaidFormId == FormConstants.MedicaidForms.Opt64).ToList());
+                //Console.WriteLine("Opt 64 Form Initialized {0} fields created", opt64Form.GetType().GetProperties().Count());
+                //var opt66Form = new Opt66Form(MedicaidFormFieldService.Current.GetMedicaidFields().Where(f => f.MedicaidFormId == FormConstants.MedicaidForms.Opt66).ToList());
+                //Console.WriteLine("Opt 66 Form Initialized {0} fields created", opt66Form.GetType().GetProperties().Count());
                 StartMedicaidCaseSubmission();
                 Console.ReadLine();                
             }
@@ -45,6 +44,8 @@ namespace Phoenix.Medicaid.Service
             LogEvent("Logging in", EventTypes.Events.GLinkConnected.ToInt());
             MedicaidGLinkProcess.LoginToMedicaid("R94LEVI", "PHOENIX0");
             LogEvent("Logged in to Medicaid", EventTypes.MedicaidEvents.LoggingInToMedicaid.ToInt());
+            LogEvent("Submit Opt 61", EventTypes.MedicaidEvents.ProcessOpt61.ToInt());
+            MedicaidGLinkProcess.SubmitOpt61Form(new Opt61Form(MedicaidFormFieldService.Current.GetMedicaidFields().Where(f => f.MedicaidFormId == FormConstants.MedicaidForms.Opt61).ToList()));
         }
 
         private void SubmitOpt61(Opt61Form opt61Form)
@@ -57,7 +58,7 @@ namespace Phoenix.Medicaid.Service
             {
                 //TODO Hold case 
             }
-
+            MedicaidGLinkProcess.SubmitOpt61Form(opt61Form);
         }
 
         public void LogEvent(string message, int eventType)

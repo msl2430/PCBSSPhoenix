@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Phoenix.GLinkAutomation.Core</RootNamespace>
     <AssemblyName>Phoenix.GLinkAutomation.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,6 +55,12 @@
     <Compile Include="Exceptions\GLinkCommunicationError.cs" />
     <Compile Include="GLinkEventHandling\GLinkEventHandling.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Phoenix.Medicaid\Phoenix.Medicaid.Models\Phoenix.Medicaid.Models.csproj">
+      <Project>{70a091d2-170e-49ed-b8e6-bd7ce2315f78}</Project>
+      <Name>Phoenix.Medicaid.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

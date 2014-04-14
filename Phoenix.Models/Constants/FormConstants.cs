@@ -10,7 +10,7 @@ namespace Phoenix.Models.Constants
     {
         public enum MedicaidForms
         {
-            Opt61,
+            Opt61 = 1,
             Opt64,
             Opt66
         }

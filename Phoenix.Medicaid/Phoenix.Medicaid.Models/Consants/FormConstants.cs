@@ -9,6 +9,8 @@ namespace Phoenix.Medicaid.Models.Consants
     public enum FormConstants
     {
         UserName = 16,
-        Password = 19
+        Password = 19,
+        CaseNumberScreen = 10,
+        PersonNumberScreen = 13,
     }
 }
