@@ -18,7 +18,5 @@ namespace Phoenix.Models.Models.Medicaid
         public virtual int FieldLength { get; set; }
 
         public virtual int StartIndex { get; set; }
-
-        public virtual int? RequiredFieldNumber { get; set; }
     }
 }

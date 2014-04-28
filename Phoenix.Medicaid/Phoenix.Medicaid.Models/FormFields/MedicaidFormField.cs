@@ -1,25 +1,23 @@
-﻿using Phoenix.Models.Models.Medicaid;
+﻿using Phoenix.Core.Core;
+using Phoenix.Models.Models.Medicaid;
 
 namespace Phoenix.Medicaid.Models.FormFields
 {
-    public class MedicaidFormField
+    public class MedicaidFormField : BaseModel
     {
         public string FieldName { get; set; }
         public int FieldNumber { get; set; }
         public int Length { get; set; }
+        public int StartIndex { get; set; }
         public string Data { get; set; }
-        /// <summary>
-        /// Field needed to input into Medicaid
-        /// </summary>
-        public MedicaidFormField RequiredField { get; set; }
 
         public MedicaidFormField(MedicaidField field)
         {
             FieldName = field.FieldName;
             FieldNumber = field.FieldNumber;
             Length = field.FieldLength;
+            StartIndex = field.StartIndex;
             Data = " ".PadRight(Length, ' ');
-            RequiredField = null;
         }
 
         public bool IsFieldEmpty()

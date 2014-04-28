@@ -29,11 +29,5 @@ namespace Phoenix.Medicaid.Service.Configuration
                 return _loggingService;
             }
         }
-
-        //private IMedicaidFormFieldService _medicaidFormFieldService { get; set; }
-        //protected IMedicaidFormFieldService MedicaidFormFieldService
-        //{
-        //    get { return _medicaidFormFieldService = _medicaidFormFieldService ?? (_medicaidFormFieldService = new MedicaidFormFieldService()); }
-        //}
     }
 }

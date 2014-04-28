@@ -1,0 +1,53 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="FilePath_GUMP" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="GLinkDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\GLPro\</Value>
+    </Setting>
+    <Setting Name="GLinkVisible" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="FAMISKeyword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">UAPSUP</Value>
+    </Setting>
+    <Setting Name="BatchNumber_UNum" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SQLAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">172.16.8.15</Value>
+    </Setting>
+    <Setting Name="isArchive" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ArchiveDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Phoenix\OldTextFiles\</Value>
+    </Setting>
+    <Setting Name="FAMISOperatorID" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="FAMISPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="BatchNumber_Pre" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="BatchNumber_ANum" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="UpdateAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="phxSQLConn" Type="(Connection string)" Scope="User">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;User ID=PhoenixUser;Data Source=172.16.8.15\Phoenix;FailOver Partner=192.168.204.3;Password=password;Initial Catalog=PhoenixData;Connect Timeout=3;Integrated Security=False;Persist Security Info=True;&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">User ID=PhoenixUser;Data Source=172.16.8.15\Phoenix;FailOver Partner=192.168.204.3;Password=password;Initial Catalog=PhoenixData;Connect Timeout=3;Integrated Security=False;Persist Security Info=True;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

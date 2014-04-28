@@ -1,0 +1,9 @@
+Hi everyone,
+
+Attached please find the following information regarding the upcoming (scheduled for weekend of May 7-8) FAMIS and OMEGA data base changes:
+
+A listing changes being made to accommodate or move in with the new DB.  This listing includes requested production down time and population of new fields’ information. 
+A chart of new/modified FAMIS fields 
+A chart of new/modified OMEGA fields 
+New e105 documents (it seems to take awhile for each page to display the document)
+Thank you for your cooperation in this matter

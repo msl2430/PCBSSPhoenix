@@ -1,0 +1,56 @@
+NOTE: ALL FIELDS ARE LISTED AS ALPHANUMERIC (EX: A7= ALPH 7 CHARACTERS)
+
+MIKE: I THINK ALL FIELDS LABELED N - NUMERIC SHOULD BE ZERO FILLED! PLEASE CHECK & GET BACK TO ME
+
+FIELD		LENGTH		FORMAT		RECORD
+--------------------------------------------------------------------------
+AQ		A7		XXXX.XX		FAMISCaseInformation		(ADDED AFTER BLOCK WW)
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+MS		A7		XXXX.XX		FAMISFoodStampInformation	(ADDED AFTER BLOCK NL)
+MT		A7		XXXX.XX		FAMISFoodStampInformation
+MU		A13				FAMISFoodStampInformation
+NQ		A1				FAMISFoodStampInformation
+NR		A1				FAMISFoodStampInformation
+NS		A1				FAMISFoodStampInformation
+NT		A10		XX/XX/XXXX	FAMISFoodStampInformation
+NU		A7		XXXX.XX		FAMISFoodStampInformation	(? FAMIS RECORD 4 DIGITS NUMERIC)
+NV		A8		XXXXXXXX	FAMISFoodStampInformation
+NW		A8		XXXXXXXX	FAMISFoodStampInformation
+OP		A1				FAMISFoodStampInformation
+OR		A1				FAMISFoodStampInformation
+VB		A15				FAMISFoodStampInformation
+VF		A2				FAMISFoodStampInformation
+VH		A1				FAMISFoodStampInformation
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+B1		A2				FAMISIndividualsInformation	(ADDED AFTER BLOCK FO)
+B2		A2				FAMISIndividualsInformation
+B3		A2				FAMISIndividualsInformation
+B4		A2				FAMISIndividualsInformation
+FQ		A1		X		FAMISIndividualsInformation
+FR		A1		X		FAMISIndividualsInformation
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+HU		A10		XX/XX/XXXX	FAMISMedicaidInformation	(ADDED AFTER BLOCK WG)
+HV		A10		XX/XX/XXXX	FAMISMedicaidInformation
+XO		A2		XX		FAMISMedicaidInformation
+XP		A1		X		FAMISMedicaidInformation
+XQ		A1		X		FAMISMedicaidInformation
+XR		A1				FAMISMedicaidInformation
+XS		A3				FAMISMedicaidInformation
+XT		A10		XX/XX/XXXX	FAMISMedicaidInformation
+XU		A2		XX		FAMISMedicaidInformation
+XV		A1		X		FAMISMedicaidInformation
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+QU		A2				FAMISChildInformation		(ADDED AFTER BLOCK TJ
+RS		A1		X		FAMISChildInformation
+RT		A10		XX/XX/XXXX	FAMISChildInformation
+ST		A1				FAMISChildInformation
+TT		A2				FAMISChildInformation
+YA		A1				FAMISChildInformation

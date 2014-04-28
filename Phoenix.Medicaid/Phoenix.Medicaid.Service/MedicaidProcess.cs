@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Phoenix.Core.Constants;
 using Phoenix.Core.Extensions;
 using Phoenix.Medicaid.Models;
@@ -20,15 +21,17 @@ namespace Phoenix.Medicaid.Service
         {
             try
             {               
-                LogEvent("Running", EventTypes.Events.BeginCaseProcess.ToInt());
-                
-                
+                LogEvent("Running", EventTypes.Events.BeginCaseProcess.ToInt());               
                 //var opt64Form = new Opt64Form(MedicaidFormFieldService.Current.GetMedicaidFields().Where(f => f.MedicaidFormId == FormConstants.MedicaidForms.Opt64).ToList());
                 //Console.WriteLine("Opt 64 Form Initialized {0} fields created", opt64Form.GetType().GetProperties().Count());
                 //var opt66Form = new Opt66Form(MedicaidFormFieldService.Current.GetMedicaidFields().Where(f => f.MedicaidFormId == FormConstants.MedicaidForms.Opt66).ToList());
                 //Console.WriteLine("Opt 66 Form Initialized {0} fields created", opt66Form.GetType().GetProperties().Count());
-                StartMedicaidCaseSubmission();
+                //StartMedicaidCaseSubmission();
+                var fds = new FileDiscoveryService();
+                Task.Run(() => fds.TaskToRun());
+                Console.WriteLine("Called FileDiscoveryTask");
                 Console.ReadLine();                
+                fds.CancelTask();
             }
             catch (Exception ex)
             {
@@ -45,7 +48,7 @@ namespace Phoenix.Medicaid.Service
             MedicaidGLinkProcess.LoginToMedicaid("R94LEVI", "PHOENIX0");
             LogEvent("Logged in to Medicaid", EventTypes.MedicaidEvents.LoggingInToMedicaid.ToInt());
             LogEvent("Submit Opt 61", EventTypes.MedicaidEvents.ProcessOpt61.ToInt());
-            MedicaidGLinkProcess.SubmitOpt61Form(new Opt61Form(MedicaidFormFieldService.Current.GetMedicaidFields().Where(f => f.MedicaidFormId == FormConstants.MedicaidForms.Opt61).ToList()));
+            SubmitOpt61(new Opt61Form(MedicaidFormFieldService.Current.GetMedicaidFields().Where(f => f.MedicaidFormId == FormConstants.MedicaidForms.Opt61).ToList()));
         }
 
         private void SubmitOpt61(Opt61Form opt61Form)

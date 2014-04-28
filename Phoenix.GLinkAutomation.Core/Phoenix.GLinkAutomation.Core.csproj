@@ -57,6 +57,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Phoenix.Core\Phoenix.Core.csproj">
+      <Project>{8608109b-6dd7-4dc8-a6d4-f5a4a180ecfa}</Project>
+      <Name>Phoenix.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Phoenix.Medicaid\Phoenix.Medicaid.Models\Phoenix.Medicaid.Models.csproj">
       <Project>{70a091d2-170e-49ed-b8e6-bd7ce2315f78}</Project>
       <Name>Phoenix.Medicaid.Models</Name>

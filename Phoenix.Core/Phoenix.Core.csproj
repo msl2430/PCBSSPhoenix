@@ -49,9 +49,12 @@
     <Compile Include="Attributes\StringValueAttribute.cs" />
     <Compile Include="Constants\ApplicationConstants.cs" />
     <Compile Include="Constants\EventTypes.cs" />
+    <Compile Include="Core\BaseModel.cs" />
     <Compile Include="Core\IdNamePair.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Services\BaseTaskService.cs" />
+    <Compile Include="Services\ITaskService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

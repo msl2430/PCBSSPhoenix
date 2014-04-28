@@ -1,0 +1,63 @@
+FIELDS THAT HAVE CHANGED SIZES (ADDED TO END OF RECORDS)
+
+NOTE: ALL FIELDS ARE LISTED AS ALPHANUMERIC (EX: A7= ALPH 7 CHARACTERS)
+
+MIKE: I THINK ALL FIELDS LABELED N - NUMERIC SHOULD BE ZERO FILLED! PLEASE CHECK & GET BACK TO ME
+
+
+FIELD		LENGTH		FORMAT		RECORD
+--------------------------------------------------------------------------
+
+DF 		A2		XX		FAMISApplicationInformation	(ADDED AFTER BLOCK XN)
+
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+
+MO		A8		XXXXX.XX	FAMISFoodStampInformation	(ADDED AFTER BLOCK VH)
+
+WY		A2				FAMISFoodStampInformation
+
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+
+JN		A8		XXXXX.XX	FAMISIncomeInformation		(ADDED AFTER BLOCK JJ)
+
+JO		A8		XXXXX.XX	FAMISIncomeInformation
+
+KM		A8		XXXXX.XX	FAMISIncomeInformation
+
+KN		A8		XXXXX.XX	FAMISIncomeInformation
+
+KO		A8		XXXXX.XX	FAMISIncomeInformation
+
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+
+FH		A3		XXX		FAMISIndividualsInformation	(ADDED AFTER BLOCK FR)
+
+FO		A3		XXX		FAMISIndividualsInformation
+
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+
+HL		A3				FAMISMedicaidInformation	(ADDED AFTER BLOCK XV)
+
+HT		A3				FAMISMedicaidInformation
+
+WN		A8		XXXXX.XX	FAMISMedicaidInformation
+
+WO		A8		XXXXX.XX	FAMISMedicaidInformation
+
+WR		A8		XXXXX.XX	FAMISMedicaidInformation
+
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+
+RF		A3				FAMISChildInformation		(ADDED AFTER BLOCK YA)
+
+SM		A8		XXXXX.XX	FAMISChildInformation

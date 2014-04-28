@@ -1,0 +1,38 @@
+NOTE: ALL FIELDS ARE LISTED AS ALPHANUMERIC (EX: A7= ALPH 7 CHARACTERS)
+
+MIKE: I THINK ALL FIELDS LABELED N - NUMERIC SHOULD BE ZERO FILLED! PLEASE CHECK & GET BACK TO ME
+
+FIELD		LENGTH		FORMAT		RECORD
+--------------------------------------------------------------------------
+DF 		A3-A2		XX		FAMISApplicationInformation
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+MO		A7-A8		XXXXX.XX	FAMISFoodStampInformation
+WY		A6-A2				FAMISFoodStampInformation
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+JN		A7-A8		XXXXX.XX	FAMISIncomeInformation
+JO		A7-A8		XXXXX.XX	FAMISIncomeInformation
+KM		A7-A8		XXXXX.XX	FAMISIncomeInformation
+KN		A7-A8		XXXXX.XX	FAMISIncomeInformation
+KO		A7-A8		XXXXX.XX	FAMISIncomeInformation
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+FH		A2-A3		XXX		FAMISIndividualsInformation
+FO		A2-A3		XXX		FAMISIndividualsInformation
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+HL		A2-A3				FAMISMedicaidInformation
+HT		A2-A3				FAMISMedicaidInformation
+WN		A7-A8		XXXXX.XX	FAMISMedicaidInformation
+WO		A7-A8		XXXXX.XX	FAMISMedicaidInformation
+WR		A7-A8		XXXXX.XX	FAMISMedicaidInformation
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+RF		A2-A3				FAMISChildInformation
+SM		A7-A8		XXXXX.XX	FAMISChildInformation

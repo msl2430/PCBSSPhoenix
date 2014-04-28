@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Phoenix.Core.Core;
 using Phoenix.Medicaid.Models.FormFields;
 using Phoenix.Models.Models.Medicaid;
 
 namespace Phoenix.Medicaid.Models.OptForms
 {
-    public class MedicaidOptForm
+    public class MedicaidOptForm : BaseModel
     {
         public MedicaidFormField ActionCode { get; set; }
         public MedicaidFormField CaseNumber { get; set; }
@@ -17,7 +18,7 @@ namespace Phoenix.Medicaid.Models.OptForms
             var properties = GetType().GetProperties();
             foreach (var propInfo in properties)
             {
-                var field = fields.FirstOrDefault(f => f.FieldName == propInfo.Name);
+                var field = fields.FirstOrDefault(f => f.FieldName.ToLower() == propInfo.Name.ToLower());
                 if (field != null)
                 {
                     if (propInfo.PropertyType == typeof(IEnumerable<MedicaidFormField>))

@@ -20,7 +20,6 @@ namespace Phoenix.Models.Mappings.Medicaid
             Map(mf => mf.FieldNumber);
             Map(mf => mf.FieldLength);
             Map(mf => mf.StartIndex);
-            Map(mf => mf.RequiredFieldNumber).Nullable();
         }
     }
 }

@@ -57,6 +57,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Phoenix.Core\Phoenix.Core.csproj">
+      <Project>{8608109b-6dd7-4dc8-a6d4-f5a4a180ecfa}</Project>
+      <Name>Phoenix.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Phoenix.Models\Phoenix.Models.csproj">
       <Project>{59f1cdf7-1a90-49d1-8cf5-e1f92f25c617}</Project>
       <Name>Phoenix.Models</Name>

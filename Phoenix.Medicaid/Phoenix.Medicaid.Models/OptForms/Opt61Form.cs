@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using NHibernate.Hql.Ast.ANTLR;
 using Phoenix.Medicaid.Models.FormFields;
 using Phoenix.Models.Models.Medicaid;
 
@@ -44,12 +46,45 @@ namespace Phoenix.Medicaid.Models.OptForms
         public MedicaidFormField Supervisor { get; set; }
         public MedicaidFormField Worker { get; set; }
 
-        public DateTime EntryDate { get { return !string.IsNullOrEmpty(TempDate.Data) ? Convert.ToDateTime(TempDate.Data.Insert(2, "/").Insert(5, "/")) : DateTime.Now;} }
+        private IEnumerable<MedicaidField> Fields { get; set; } 
+
+        //public DateTime EntryDate { get { return !string.IsNullOrEmpty(TempDate.Data) ? Convert.ToDateTime(TempDate.Data.Insert(2, "/").Insert(5, "/")) : DateTime.Now;} }
+        public DateTime EntryDate { get { return DateTime.Now; } }
 
         public Opt61Form(IList<MedicaidField> fields)
         {
+            Fields = fields;
             base.Initialize(fields);
-        } 
+        }
 
+        public void PopulateFromCsv(string record)
+        {
+            foreach (var prop in GetType().GetProperties())
+            {
+                if (prop.PropertyType == typeof (IEnumerable<MedicaidFormField>))
+                {
+                    var list = (List<MedicaidFormField>) prop.GetValue(this);
+                    while (true)
+                    {
+                        var field = new MedicaidFormField(Fields.FirstOrDefault(f => f.FieldName.ToLower() == prop.Name.ToLower()));
+                        if (field.StartIndex <= 0 || record.Length < field.StartIndex + (list.Count*64) + field.Length)// || string.IsNullOrWhiteSpace(record.Substring(field.StartIndex + (list.Count*64), field.Length)))
+                            break;
+
+                        field.Data = record.Substring(field.StartIndex + (list.Count*64), field.Length);
+                        Console.WriteLine("{0}: {1}", prop.Name, field.Data);
+                        list.Add(field);
+                    }
+                }
+                if(prop.PropertyType == typeof(MedicaidFormField))
+                {
+                    var field = (MedicaidFormField)prop.GetValue(this);
+                    if (field.StartIndex > 0)
+                    {
+                        field.Data = record.Substring(field.StartIndex, field.Length);
+                        Console.WriteLine("{0}: {1}", prop.Name, field.Data);
+                    }
+                }
+            }
+        }
     } 
 }
