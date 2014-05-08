@@ -57,7 +57,7 @@ namespace Phoenix.Medicaid.Models.OptForms
             base.Initialize(fields);
         }
 
-        public void PopulateFromCsv(string record)
+        public override void PopulateFromCsv(string record)
         {
             foreach (var prop in GetType().GetProperties())
             {
@@ -67,7 +67,7 @@ namespace Phoenix.Medicaid.Models.OptForms
                     while (true)
                     {
                         var field = new MedicaidFormField(Fields.FirstOrDefault(f => f.FieldName.ToLower() == prop.Name.ToLower()));
-                        if (field.StartIndex <= 0 || record.Length < field.StartIndex + (list.Count*64) + field.Length)// || string.IsNullOrWhiteSpace(record.Substring(field.StartIndex + (list.Count*64), field.Length)))
+                        if (field.StartIndex <= 0 || record.Length <= field.StartIndex + (list.Count*64) + field.Length)// || string.IsNullOrWhiteSpace(record.Substring(field.StartIndex + (list.Count*64), field.Length)))
                             break;
 
                         field.Data = record.Substring(field.StartIndex + (list.Count*64), field.Length);

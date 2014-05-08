@@ -6,7 +6,7 @@ using Phoenix.Models.Models.Medicaid;
 
 namespace Phoenix.Medicaid.Models.OptForms
 {
-    public class MedicaidOptForm : BaseModel
+    public abstract class MedicaidOptForm : BaseModel
     {
         public MedicaidFormField ActionCode { get; set; }
         public MedicaidFormField CaseNumber { get; set; }
@@ -33,5 +33,7 @@ namespace Phoenix.Medicaid.Models.OptForms
                 
             }
         }
+
+        public abstract void PopulateFromCsv(string record);
     }
 }

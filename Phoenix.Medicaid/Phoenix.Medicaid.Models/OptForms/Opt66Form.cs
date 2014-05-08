@@ -16,5 +16,10 @@ namespace Phoenix.Medicaid.Models.OptForms
         {
             base.Initialize(fields);
         }
+
+        public override void PopulateFromCsv(string record)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

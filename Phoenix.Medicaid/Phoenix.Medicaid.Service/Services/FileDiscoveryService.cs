@@ -36,7 +36,8 @@ namespace Phoenix.Medicaid.Service.Services
                 {
                     Console.WriteLine("Processing file: {0}", file.FullName);
                     if(file.Name.Contains("61"))
-                        ProcessFile(file);                    
+                        ProcessFile(file); 
+                    base.CancelTask();
                 }
                 Thread.Sleep(FileDiscoveryWaitTime);
             }
