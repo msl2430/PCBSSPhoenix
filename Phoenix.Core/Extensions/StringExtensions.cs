@@ -1,4 +1,5 @@
-﻿namespace Phoenix.Core.Extensions
+﻿using System;
+namespace Phoenix.Core.Extensions
 {
     public static class StringExtensions
     {
@@ -22,5 +23,16 @@
             return string.Format("{0}-{1}-{2}", ssn.Substring(0, 3), ssn.Substring(3, 2), ssn.Substring(5, 4));
         }
 
+        public static int? TryParseNullableInt(this string value)
+        {
+            int outValue;
+            return int.TryParse(value, out outValue) ? (int?)outValue : null;
+        }
+
+        public static DateTime? TryParseNullableDateTime(this string value)
+        {
+            DateTime outValue;
+            return DateTime.TryParse(value, out outValue) ? (DateTime?)outValue : null;
+        }
     }
 }

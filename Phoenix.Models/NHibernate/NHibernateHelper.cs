@@ -50,5 +50,12 @@ namespace Phoenix.Models.NHibernate
         {
             return SessionFactory.OpenSession();
         }
+
+        public static void FlushAndCommit()
+        {
+            SessionFactory.GetCurrentSession().Flush();
+            SessionFactory.GetCurrentSession().Transaction.Commit();
+            SessionFactory.GetCurrentSession().BeginTransaction();
+        }
     }
 }

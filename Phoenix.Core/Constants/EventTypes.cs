@@ -22,8 +22,13 @@ namespace Phoenix.Core.Constants
 
         public enum MedicaidEvents
         {
+            FileDiscoveryStarted = 1000,
+            FileDiscoveryCancelled = 1001,
+            FileDiscoveryStopped = 1002,
+            FileDiscoveryFilesFound = 1003,
             LoggingInToMedicaid = 2000,
             ProcessOpt61 = 2001,
+            AddCaseToQueue = 2002
         }
     }
 }

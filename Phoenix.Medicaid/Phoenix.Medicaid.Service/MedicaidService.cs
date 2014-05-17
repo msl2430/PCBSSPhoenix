@@ -36,7 +36,7 @@ namespace Phoenix.Medicaid.Service
 
         protected override void OnStop()
         {
-            _medicaidProcess.LogEvent("Phoenix Medicaid service started", EventTypes.Events.ApplicationStarted.ToInt());
+            _medicaidProcess.LogEvent("Phoenix Medicaid service stopped", EventTypes.Events.ApplicationStopped.ToInt());
             _callback.Dispose();
         }
 

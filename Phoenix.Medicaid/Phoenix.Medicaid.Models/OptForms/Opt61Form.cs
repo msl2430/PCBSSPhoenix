@@ -4,6 +4,7 @@ using System.Linq;
 using NHibernate.Hql.Ast.ANTLR;
 using Phoenix.Medicaid.Models.FormFields;
 using Phoenix.Models.Models.Medicaid;
+using Phoenix.Core.Extensions;
 
 namespace Phoenix.Medicaid.Models.OptForms
 {
@@ -57,6 +58,61 @@ namespace Phoenix.Medicaid.Models.OptForms
             base.Initialize(fields);
         }
 
+        public Opt61Queue ToOpt61Queue() {
+            var opt61Queue = new Opt61Queue();
+            foreach (var prop in GetType().GetProperties())
+            {
+                if (prop.PropertyType == typeof (IEnumerable<MedicaidFormField>))
+                {
+                    var fields = ((List<MedicaidFormField>)prop.GetValue(this)).ToList();
+                    foreach (MedicaidFormField field in fields)
+                    {
+                        var queue = opt61Queue.GetType().GetProperty(string.Concat(prop.Name, fields.IndexOf(field) + 1));
+                        if (queue != null)
+                        {
+                            if (queue.GetType() == typeof(int))
+                            {
+                                queue.SetValue(opt61Queue, field.Data.TryParseNullableInt(), null);
+                            }
+                            else if (queue.GetType() == typeof(string))
+                            {
+                                queue.SetValue(this, field.Data, null);
+                            }
+                            else if (queue.GetType() == typeof(DateTime))
+                            {
+                                queue.SetValue(opt61Queue, field.Data.TryParseNullableDateTime(), null);
+                            }
+                        }
+                    }                                       
+                }
+                if(prop.PropertyType == typeof(MedicaidFormField))
+                {
+                    var field = (MedicaidFormField)prop.GetValue(this);
+                    if (field.StartIndex > 0 && !field.IsFieldEmpty())
+                    {
+                        var queue = opt61Queue.GetType().GetProperty(prop.Name);
+                        if (queue != null)
+                        {
+                            if (queue.PropertyType == typeof(Int32?))
+                            {
+                                queue.SetValue(opt61Queue, field.Data.TryParseNullableInt(), null);
+                            }
+                            else if (queue.PropertyType == typeof(string))
+                            {
+                                queue.SetValue(opt61Queue, field.Data, null);
+                            }
+                            else if (queue.PropertyType == typeof(DateTime?))
+                            {
+                                queue.SetValue(opt61Queue, field.Data.TryParseNullableDateTime(), null);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return opt61Queue;
+        }
+
         public override void PopulateFromCsv(string record)
         {
             foreach (var prop in GetType().GetProperties())
@@ -71,7 +127,6 @@ namespace Phoenix.Medicaid.Models.OptForms
                             break;
 
                         field.Data = record.Substring(field.StartIndex + (list.Count*64), field.Length);
-                        Console.WriteLine("{0}: {1}", prop.Name, field.Data);
                         list.Add(field);
                     }
                 }
@@ -81,7 +136,6 @@ namespace Phoenix.Medicaid.Models.OptForms
                     if (field.StartIndex > 0)
                     {
                         field.Data = record.Substring(field.StartIndex, field.Length);
-                        Console.WriteLine("{0}: {1}", prop.Name, field.Data);
                     }
                 }
             }

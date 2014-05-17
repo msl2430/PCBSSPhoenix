@@ -27,7 +27,7 @@ namespace Phoenix.Medicaid.Service
                 //var opt66Form = new Opt66Form(MedicaidFormFieldService.Current.GetMedicaidFields().Where(f => f.MedicaidFormId == FormConstants.MedicaidForms.Opt66).ToList());
                 //Console.WriteLine("Opt 66 Form Initialized {0} fields created", opt66Form.GetType().GetProperties().Count());
                 //StartMedicaidCaseSubmission();
-                var fds = new FileDiscoveryService();
+                var fds = new FileDiscoveryService(LoggingService);
                 Task.Run(() => fds.TaskToRun());
                 Console.WriteLine("Called FileDiscoveryTask");
                 Console.ReadLine();                

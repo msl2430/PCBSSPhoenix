@@ -55,8 +55,10 @@
     <Compile Include="Constants\FormConstants.cs" />
     <Compile Include="Mappings\Events\ApplicationEventMap.cs" />
     <Compile Include="Mappings\Medicaid\MedicaidFieldMap.cs" />
+    <Compile Include="Mappings\Medicaid\Opt61QueueMap.cs" />
     <Compile Include="Models\Events\ApplicationEvent.cs" />
     <Compile Include="Models\Medicaid\MedicaidField.cs" />
+    <Compile Include="Models\Medicaid\Opt61Queue.cs" />
     <Compile Include="NHibernate\NHibernateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Events\ApplicationEventService.cs" />
