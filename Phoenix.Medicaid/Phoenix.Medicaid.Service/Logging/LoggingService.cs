@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NHibernate;
 using Phoenix.Core.Constants;
-using Phoenix.Medicaid.Service.Configuration;
-using Phoenix.Models.Services.Events;
+using Phoenix.Medicaid.Service.Services;
 
 namespace Phoenix.Medicaid.Service.Logging
 {
@@ -16,7 +10,7 @@ namespace Phoenix.Medicaid.Service.Logging
         void LogEvent(string message, int eventType, bool savetoDatabase);
     }
 
-    public class LoggingService : BaseService, ILoggingService
+    public class LoggingService : MedicaidBaseService, ILoggingService
     {
         private bool SaveToSystem { get; set; }
         public LoggingService(EventLog medicaidEventLog)

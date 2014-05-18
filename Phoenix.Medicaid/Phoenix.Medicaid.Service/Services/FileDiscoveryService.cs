@@ -1,24 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Phoenix.Core;
-using Phoenix.Core.Services;
 using Phoenix.Medicaid.Models.OptForms;
+using Phoenix.Medicaid.Service.Logging;
 using Phoenix.Models.Constants;
 using Phoenix.Models.NHibernate;
-using Phoenix.Medicaid.Service.Logging;
 using Phoenix.Core.Constants;
 using Phoenix.Core.Extensions;
 
 namespace Phoenix.Medicaid.Service.Services
 {
-    public class FileDiscoveryService : BaseTaskService
+    public sealed class FileDiscoveryService : MedicaidBaseTaskService 
     {
-        private ILoggingService LoggingService { get; set; }
         private readonly DirectoryInfo _fileDirectoryInfo = new DirectoryInfo(@"D:\Social Services\PCBSSPhoenix\Test Files");
         private const int FileDiscoveryWaitTime = 5000;// 300000;
 
@@ -47,16 +43,22 @@ namespace Phoenix.Medicaid.Service.Services
             {
                 if (!_fileDirectoryInfo.Exists || !_fileDirectoryInfo.GetFiles().Any()) continue;
                 LoggingService.LogEvent(string.Format("Found {0} files to process.", _fileDirectoryInfo.GetFiles("*.csv").Count()), EventTypes.MedicaidEvents.FileDiscoveryFilesFound.ToInt(), false);
-                foreach (var file in _fileDirectoryInfo.GetFiles("*.csv"))
+                var filesInDirectory = _fileDirectoryInfo.GetFiles("*.csv").ToList();
+                foreach (var file in filesInDirectory)
                 {
                     LoggingService.LogEvent(string.Format("Processing file: {0}", file.FullName), EventTypes.MedicaidEvents.FileDiscoveryStopped.ToInt(), false);
-                    if(file.Name.Contains("61"))
-                        ProcessFile(file); 
+                    if (file.Name.Contains("61"))
+                    {
+                        ProcessFile(file);
+                        if ((new FileInfo(string.Concat(@"D:\Social Services\PCBSSPhoenix\Test Files\Archives", "\\", file.Name))).Exists)
+                            (new FileInfo(string.Concat(@"D:\Social Services\PCBSSPhoenix\Test Files\Archives", "\\", file.Name))).Delete();
+                        file.MoveTo(string.Concat(@"D:\Social Services\PCBSSPhoenix\Test Files\Archives", "\\", file.Name));
+                    }                    
                     base.CancelTask();
                 }
                 Thread.Sleep(FileDiscoveryWaitTime);
             }
-            LoggingService.LogEvent("Cancelled FileDiscoveryTask.", EventTypes.MedicaidEvents.FileDiscoveryStopped.ToInt(), false);
+            LoggingService.LogEvent("Cancelled File Discovery Service.", EventTypes.MedicaidEvents.FileDiscoveryStopped.ToInt(), false);
         }
 
         private void ProcessFile(FileInfo file)

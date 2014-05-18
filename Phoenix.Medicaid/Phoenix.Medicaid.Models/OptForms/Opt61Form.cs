@@ -58,6 +58,45 @@ namespace Phoenix.Medicaid.Models.OptForms
             base.Initialize(fields);
         }
 
+        public Opt61Form(IList<MedicaidField> fields, Opt61Queue opt61Queue)
+        {
+            Fields = fields;
+            base.Initialize(fields);
+            foreach (var prop in GetType().GetProperties())
+            {
+                if (prop.PropertyType == typeof (IEnumerable<MedicaidFormField>))
+                {
+                    var fieldList = ((List<MedicaidFormField>)prop.GetValue(this)).ToList();
+                    foreach (var field in fieldList)
+                    {
+                        var queue = opt61Queue.GetType().GetProperty(string.Concat(prop.Name, fieldList.IndexOf(field) + 1));
+                        if (queue == null || queue.GetValue(opt61Queue) == null)
+                        {
+                            field.Data = " ".PadLeft(field.Length, ' ');
+                            continue;
+                        }
+                        field.Data = queue.PropertyType != typeof(DateTime?)
+                            ? queue.GetValue(opt61Queue).ToString()
+                            : Convert.ToDateTime(queue.GetValue(opt61Queue)).ToShortDateString();
+                    }     
+                }
+                else if (prop.PropertyType == typeof (MedicaidFormField))
+                {
+                    var field = (MedicaidFormField)prop.GetValue(this);
+                    if (field.StartIndex <= 0 || field.IsFieldEmpty()) continue;
+                    var queue = opt61Queue.GetType().GetProperty(prop.Name);
+                    if (queue == null || queue.GetValue(opt61Queue) == null)
+                    {
+                        field.Data = " ".PadLeft(field.Length, ' ');
+                        continue;
+                    }
+                    field.Data = queue.PropertyType != typeof (DateTime?) 
+                        ? queue.GetValue(opt61Queue).ToString() 
+                        : Convert.ToDateTime(queue.GetValue(opt61Queue)).ToShortDateString();
+                }
+            }
+        }
+
         public Opt61Queue ToOpt61Queue() {
             var opt61Queue = new Opt61Queue();
             foreach (var prop in GetType().GetProperties())
@@ -65,48 +104,20 @@ namespace Phoenix.Medicaid.Models.OptForms
                 if (prop.PropertyType == typeof (IEnumerable<MedicaidFormField>))
                 {
                     var fields = ((List<MedicaidFormField>)prop.GetValue(this)).ToList();
-                    foreach (MedicaidFormField field in fields)
+                    foreach (var field in fields)
                     {
                         var queue = opt61Queue.GetType().GetProperty(string.Concat(prop.Name, fields.IndexOf(field) + 1));
-                        if (queue != null)
-                        {
-                            if (queue.GetType() == typeof(int))
-                            {
-                                queue.SetValue(opt61Queue, field.Data.TryParseNullableInt(), null);
-                            }
-                            else if (queue.GetType() == typeof(string))
-                            {
-                                queue.SetValue(this, field.Data, null);
-                            }
-                            else if (queue.GetType() == typeof(DateTime))
-                            {
-                                queue.SetValue(opt61Queue, field.Data.TryParseNullableDateTime(), null);
-                            }
-                        }
+                        if (queue == null) continue;
+                        queue.SetPropertyValueFromString(opt61Queue, field.Data);
                     }                                       
                 }
-                if(prop.PropertyType == typeof(MedicaidFormField))
+                else if(prop.PropertyType == typeof(MedicaidFormField))
                 {
                     var field = (MedicaidFormField)prop.GetValue(this);
-                    if (field.StartIndex > 0 && !field.IsFieldEmpty())
-                    {
-                        var queue = opt61Queue.GetType().GetProperty(prop.Name);
-                        if (queue != null)
-                        {
-                            if (queue.PropertyType == typeof(Int32?))
-                            {
-                                queue.SetValue(opt61Queue, field.Data.TryParseNullableInt(), null);
-                            }
-                            else if (queue.PropertyType == typeof(string))
-                            {
-                                queue.SetValue(opt61Queue, field.Data, null);
-                            }
-                            else if (queue.PropertyType == typeof(DateTime?))
-                            {
-                                queue.SetValue(opt61Queue, field.Data.TryParseNullableDateTime(), null);
-                            }
-                        }
-                    }
+                    if (field.StartIndex <= 0 || field.IsFieldEmpty()) continue;
+                    var queue = opt61Queue.GetType().GetProperty(prop.Name);
+                    if (queue == null) continue;
+                    queue.SetPropertyValueFromString(opt61Queue, field.Data);
                 }
             }
 

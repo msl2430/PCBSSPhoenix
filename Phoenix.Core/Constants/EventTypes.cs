@@ -28,7 +28,11 @@ namespace Phoenix.Core.Constants
             FileDiscoveryFilesFound = 1003,
             LoggingInToMedicaid = 2000,
             ProcessOpt61 = 2001,
-            AddCaseToQueue = 2002
+            AddCaseToQueue = 2002,
+            ProcessingQueueStarted = 3000,
+            ProcessingQueueCancelled = 3001,
+            ProcessingQueueStopped = 3002,
+            
         }
     }
 }

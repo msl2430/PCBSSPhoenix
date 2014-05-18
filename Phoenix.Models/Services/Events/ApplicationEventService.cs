@@ -22,8 +22,7 @@ namespace Phoenix.Models.Services.Events
                 EventTimestamp = DateTime.Now
             };
             NHibernateHelper.CurrentSession.Save(newEvent);
-            NHibernateHelper.CurrentSession.Flush();
-            NHibernateHelper.CurrentSession.Transaction.Commit();
+            NHibernateHelper.FlushAndCommit();
         }
     }
 }

@@ -28,10 +28,12 @@ namespace Phoenix.Medicaid.Service
                 //Console.WriteLine("Opt 66 Form Initialized {0} fields created", opt66Form.GetType().GetProperties().Count());
                 //StartMedicaidCaseSubmission();
                 var fds = new FileDiscoveryService(LoggingService);
+                var pqs = new ProcessingQueueService(LoggingService);
                 Task.Run(() => fds.TaskToRun());
                 Console.WriteLine("Called FileDiscoveryTask");
                 Console.ReadLine();                
                 fds.CancelTask();
+                pqs.CancelTask();
             }
             catch (Exception ex)
             {

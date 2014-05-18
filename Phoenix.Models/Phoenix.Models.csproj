@@ -61,6 +61,7 @@
     <Compile Include="Models\Medicaid\Opt61Queue.cs" />
     <Compile Include="NHibernate\NHibernateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Medicaid\Opt61QueueRepository.cs" />
     <Compile Include="Services\Events\ApplicationEventService.cs" />
   </ItemGroup>
   <ItemGroup />
