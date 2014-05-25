@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phoenix.Core", "..\..\Phoenix.Core\Phoenix.Core.csproj", "{8608109B-6DD7-4DC8-A6D4-F5A4A180ECFA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phoenix.Models", "..\..\Phoenix.Models\Phoenix.Models.csproj", "{59F1CDF7-1A90-49D1-8CF5-E1F92F25C617}"
@@ -16,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phoenix.Medicaid.Tests", "..\Phoenix.Medicaid.Tests\Phoenix.Medicaid.Tests.csproj", "{A92BDCCF-AFBA-4DAE-A4A5-81704AF0D991}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phoenix.Medicaid.Models", "..\Phoenix.Medicaid.Models\Phoenix.Medicaid.Models.csproj", "{70A091D2-170E-49ED-B8E6-BD7CE2315F78}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{F6F6CF83-B49A-4952-B17C-B8D5431A7300}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,5 +54,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8608109B-6DD7-4DC8-A6D4-F5A4A180ECFA} = {F6F6CF83-B49A-4952-B17C-B8D5431A7300}
+		{59F1CDF7-1A90-49D1-8CF5-E1F92F25C617} = {F6F6CF83-B49A-4952-B17C-B8D5431A7300}
+		{15D241E9-4DF9-4378-B3D8-F5CA691DAC76} = {F6F6CF83-B49A-4952-B17C-B8D5431A7300}
 	EndGlobalSection
 EndGlobal

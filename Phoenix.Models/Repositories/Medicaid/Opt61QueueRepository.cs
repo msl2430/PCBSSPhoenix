@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Phoenix.Models.Models.Medicaid;
+﻿using Phoenix.Models.Models.Medicaid;
 using Phoenix.Models.NHibernate;
 
 namespace Phoenix.Models.Repositories.Medicaid

@@ -18,7 +18,7 @@ namespace Phoenix.Models.Services.Events
             {
                 ApplicationId = (int)ApplicationConstants.Applications.PhoenixMedicaidService,
                 EventTypeId = eventType,
-                Details = "Started Console App",
+                Details = string.IsNullOrEmpty(message) ? string.Empty : message,
                 EventTimestamp = DateTime.Now
             };
             NHibernateHelper.CurrentSession.Save(newEvent);

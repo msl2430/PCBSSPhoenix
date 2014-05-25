@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentNHibernate.Mapping;
 using Phoenix.Models.Models.Medicaid;
-using FluentNHibernate.Mapping;
 
 namespace Phoenix.Models.Mappings.Medicaid
 {

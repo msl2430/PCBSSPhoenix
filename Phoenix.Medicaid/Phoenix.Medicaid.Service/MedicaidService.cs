@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Phoenix.Core.Constants;
+using Phoenix.Core.Extensions;
+using System;
 using System.Configuration;
 using System.ServiceProcess;
 using System.Threading;
-using Phoenix.Core.Constants;
-using Phoenix.Core.Extensions;
-using Phoenix.Medicaid.Service.Factories;
 
 namespace Phoenix.Medicaid.Service
 {

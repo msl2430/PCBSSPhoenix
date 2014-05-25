@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Phoenix.Models.Models.Medicaid
 {
@@ -84,7 +80,8 @@ namespace Phoenix.Models.Models.Medicaid
 
         public override bool Equals(object obj)
         {
-            return base.Equals(obj);
+            var right = obj as Opt61Queue;
+            return right.CaseNumber == CaseNumber && right.PersonNumber == PersonNumber;
         }
     }
 }

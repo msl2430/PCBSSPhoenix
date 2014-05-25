@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Phoenix.Core.Core;
 using Phoenix.Medicaid.Models.FormFields;
@@ -6,7 +7,17 @@ using Phoenix.Models.Models.Medicaid;
 
 namespace Phoenix.Medicaid.Models.OptForms
 {
-    public abstract class MedicaidOptForm : BaseModel
+    public interface IMedicaidOptForm
+    {
+        MedicaidFormField ActionCode { get; set; }
+        MedicaidFormField CaseNumber { get; set; }
+        MedicaidFormField PersonNumber { get; set; }
+        MedicaidFormField BatchNumber { get; set; }
+        void Initialize(IList<MedicaidField> fields);
+        void PopulateFromCsv(string record);
+    }
+
+    public abstract class MedicaidOptForm : BaseModel, IMedicaidOptForm
     {
         public MedicaidFormField ActionCode { get; set; }
         public MedicaidFormField CaseNumber { get; set; }

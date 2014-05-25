@@ -30,6 +30,7 @@ namespace Phoenix.Medicaid.Service.Services
 
             isRunning = true;
             Task.Run(() => FileDiscovery(CancellationTokenSource.Token));
+            LoggingService.LogEvent("File Discovery Service started", EventTypes.MedicaidEvents.FileDiscoveryStarted.ToInt(), false);
         }
 
         public void CancelTask()
@@ -39,24 +40,33 @@ namespace Phoenix.Medicaid.Service.Services
 
         private void FileDiscovery(CancellationToken cancellationToken)
         {
-            while (!cancellationToken.IsCancellationRequested)
+            try
             {
-                if (!_fileDirectoryInfo.Exists || !_fileDirectoryInfo.GetFiles().Any()) continue;
-                LoggingService.LogEvent(string.Format("Found {0} files to process.", _fileDirectoryInfo.GetFiles("*.csv").Count()), EventTypes.MedicaidEvents.FileDiscoveryFilesFound.ToInt(), false);
-                var filesInDirectory = _fileDirectoryInfo.GetFiles("*.csv").ToList();
-                foreach (var file in filesInDirectory)
+                while (!cancellationToken.IsCancellationRequested)
                 {
-                    LoggingService.LogEvent(string.Format("Processing file: {0}", file.FullName), EventTypes.MedicaidEvents.FileDiscoveryStopped.ToInt(), false);
-                    if (file.Name.Contains("61"))
+                    if (!_fileDirectoryInfo.Exists || !_fileDirectoryInfo.GetFiles().Any()) continue;
+                    LoggingService.LogEvent(string.Format("Found {0} files to process.", _fileDirectoryInfo.GetFiles("*.csv").Count()),
+                        EventTypes.MedicaidEvents.FileDiscoveryFilesFound.ToInt(), false);
+                    var filesInDirectory = _fileDirectoryInfo.GetFiles("*.csv").ToList();
+                    foreach (var file in filesInDirectory)
                     {
-                        ProcessFile(file);
-                        if ((new FileInfo(string.Concat(@"D:\Social Services\PCBSSPhoenix\Test Files\Archives", "\\", file.Name))).Exists)
-                            (new FileInfo(string.Concat(@"D:\Social Services\PCBSSPhoenix\Test Files\Archives", "\\", file.Name))).Delete();
-                        file.MoveTo(string.Concat(@"D:\Social Services\PCBSSPhoenix\Test Files\Archives", "\\", file.Name));
-                    }                    
-                    base.CancelTask();
+                        LoggingService.LogEvent(string.Format("Processing file: {0}", file.FullName),
+                            EventTypes.MedicaidEvents.FileDiscoveryStopped.ToInt(), false);
+                        if (file.Name.Contains("61"))
+                        {
+                            ProcessFile(file);
+                            if ((new FileInfo(string.Concat(@"D:\Social Services\PCBSSPhoenix\Test Files\Archives", "\\", file.Name))).Exists)
+                                (new FileInfo(string.Concat(@"D:\Social Services\PCBSSPhoenix\Test Files\Archives", "\\", file.Name))).Delete();
+                            file.MoveTo(string.Concat(@"D:\Social Services\PCBSSPhoenix\Test Files\Archives", "\\", file.Name));
+                        }
+                        base.CancelTask();
+                    }
+                    Thread.Sleep(FileDiscoveryWaitTime);
                 }
-                Thread.Sleep(FileDiscoveryWaitTime);
+            }
+            catch (Exception ex)
+            {
+                LoggingService.LogError(string.Format("Error in File Discovery: {0}", ex.Message), ex.InnerException.Message);
             }
             LoggingService.LogEvent("Cancelled File Discovery Service.", EventTypes.MedicaidEvents.FileDiscoveryStopped.ToInt(), false);
         }

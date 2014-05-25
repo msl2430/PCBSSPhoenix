@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using Phoenix.Core.Constants;
+using Phoenix.Core.Extensions;
 using Phoenix.Medicaid.Service.Services;
 
 namespace Phoenix.Medicaid.Service.Logging
@@ -8,6 +9,7 @@ namespace Phoenix.Medicaid.Service.Logging
     public interface ILoggingService
     {
         void LogEvent(string message, int eventType, bool savetoDatabase);
+        void LogError(string message, string innerException);
     }
 
     public class LoggingService : MedicaidBaseService, ILoggingService
@@ -31,6 +33,11 @@ namespace Phoenix.Medicaid.Service.Logging
                 SaveEventToSystem(message, eventType);
             if (Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["IsDebug"])) 
                 SaveEventToConsole(message, eventType);
+        }
+
+        public void LogError(string message, string innerException)
+        {
+            LogEvent(string.Format("{0} Inner Exception: {1}", message, innerException), EventTypes.Events.ApplicationError.ToInt(), true);
         }
 
         /// <summary>

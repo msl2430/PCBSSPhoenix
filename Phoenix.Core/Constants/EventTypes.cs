@@ -17,7 +17,8 @@ namespace Phoenix.Core.Constants
             GLinkStarted = 200,
             GLinkConnected = 201,
 
-            ApplicationStopped = 900
+            ApplicationStopped = 900,
+            ApplicationError = 999
         }
 
         public enum MedicaidEvents

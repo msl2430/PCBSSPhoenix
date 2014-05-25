@@ -14,16 +14,7 @@ using Phoenix.Models.Services.Events;
 
 namespace Phoenix.Medicaid.Service.Services
 {
-    public interface IProcessingQueueService
-    {
-        void TaskToRun();
-        bool IsRunning { get; }
-        IApplicationEventService ApplicationEventService { get; }
-        EventLog MedicaidEventLog { get; set; }
-        void CancelTask();
-    }
-
-    public sealed class ProcessingQueueService : MedicaidBaseTaskService, IProcessingQueueService
+    public sealed class ProcessingQueueService : MedicaidBaseTaskService
     {
         private const int ProcessingQueueWaitTime = 5000;// 300000;
 
@@ -49,22 +40,43 @@ namespace Phoenix.Medicaid.Service.Services
 
         private void ProcessingQueue(CancellationToken cancellationToken)
         {
-            while (!cancellationToken.IsCancellationRequested)
+            try
             {
-                var nextOpt61 = Opt61QueueRepository.GetNextAvailableOpt61();
-                if (nextOpt61 != null)
+                while (!cancellationToken.IsCancellationRequested)
                 {
-                    var opt61 = new Opt61Form(
-                        MedicaidFormFieldService.Current.GetMedicaidFields().Where(f => f.MedicaidFormId == FormConstants.MedicaidForms.Opt61).ToList(),
-                        nextOpt61);
-                    StartMedicaidCaseSubmission();
-                    SubmitOpt61(opt61);
+                    var nextOpt61 = Opt61QueueRepository.GetNextAvailableOpt61();
+                    if (nextOpt61 != null)
+                    {
+                        var opt61 = new Opt61Form(
+                            MedicaidFormFieldService.Current.GetMedicaidFields()
+                                .Where(f => f.MedicaidFormId == FormConstants.MedicaidForms.Opt61)
+                                .ToList(),
+                            nextOpt61);
+                        StartMedicaidCaseSubmission();
+                        SubmitOpt61(opt61);
+                    }
+                    var nextOpt66 = Opt66QuqRepository.GetNextAvailableOpt66();
+                    if (nextOpt66 != null)
+                    {
+                        var opt66 =
+                            new Opt66Form(
+                                MedicaidFormFieldService.Current.GetMedicaidFields()
+                                    .Where(f => f.MedicaidFormId == FormConstants.MedicaidForms.Opt66)
+                                    .ToList(),
+                                nextOpt66);
+                        StartMedicaidCaseSubmission();
+                        //SubmitOpt66(opt66);
+                    }
+
+                    base.CancelTask();
+                    Thread.Sleep(ProcessingQueueWaitTime);
                 }
-                
-                base.CancelTask();
-                Thread.Sleep(ProcessingQueueWaitTime);
             }
-            LoggingService.LogEvent("Cancelled Proecssing Queue Service .", EventTypes.MedicaidEvents.ProcessingQueueStopped.ToInt(), false);
+            catch (Exception ex)
+            {
+                LoggingService.LogError(string.Format("Error in Processing Queue: {0}", ex.Message), ex.InnerException.Message);
+            }
+            LoggingService.LogEvent("Cancelled Proecssing Queue Service.", EventTypes.MedicaidEvents.ProcessingQueueStopped.ToInt(), false);
         }
 
         private void StartMedicaidCaseSubmission()
@@ -76,20 +88,27 @@ namespace Phoenix.Medicaid.Service.Services
             MedicaidGLinkProcess.LoginToMedicaid("R94LEVI", "PHOENIX0");
             LoggingService.LogEvent("Logged in to Medicaid", EventTypes.MedicaidEvents.LoggingInToMedicaid.ToInt(), false);
             LoggingService.LogEvent("Submit Opt 61", EventTypes.MedicaidEvents.ProcessOpt61.ToInt(), false);
-            //SubmitOpt61(new Opt61Form(MedicaidFormFieldService.Current.GetMedicaidFields().Where(f => f.MedicaidFormId == FormConstants.MedicaidForms.Opt61).ToList()));
         }
 
         private void SubmitOpt61(Opt61Form opt61Form)
         {
-            if (opt61Form.AddressAction.Data == "A" && (opt61Form.PersonNumber.Data == "01" || opt61Form.PersonNumber.Data == "02" || opt61Form.PersonNumber.Data == "05"))
+            try
             {
-                //TODO Process as family
+                if (opt61Form.AddressAction.Data == "A" &&
+                    (opt61Form.PersonNumber.Data == "01" || opt61Form.PersonNumber.Data == "02" || opt61Form.PersonNumber.Data == "05"))
+                {
+                    //TODO Process as family
+                }
+                if (opt61Form.AlienType.Data == "4" && (opt61Form.EntryDate - DateTime.Now).TotalDays <= 59)
+                {
+                    //TODO Hold case 
+                }
+                MedicaidGLinkProcess.SubmitOpt61Form(opt61Form);
             }
-            if (opt61Form.AlienType.Data == "4" && (opt61Form.EntryDate - DateTime.Now).TotalDays <= 59)
+            catch (Exception ex)
             {
-                //TODO Hold case 
+                LoggingService.LogError(string.Format("Error in Submit Opt 61: {0}", ex.Message), ex.InnerException.Message);
             }
-            MedicaidGLinkProcess.SubmitOpt61Form(opt61Form);
         }
     }
 }

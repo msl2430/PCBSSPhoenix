@@ -48,6 +48,8 @@ INSERT INTO Phoenix.MedicaidFields VALUES (2, 'PGMNum', 93,2,102)
 INSERT INTO Phoenix.MedicaidFields VALUES (2, 'EffectiveDate', 95,8,107)
 INSERT INTO Phoenix.MedicaidFields VALUES (2, 'TermDate', 97,8,118)
 
+INSERT INTO Phoenix.MedicaidFields VALUES (3, 'CaseNumber', 10, 10, 27)
+INSERT INTO Phoenix.MedicaidFields VALUES (3, 'PersonNumber', 13,2,47)
 INSERT INTO Phoenix.MedicaidFields VALUES (3, 'Supv', 104,2,115)
 INSERT INTO Phoenix.MedicaidFields VALUES (3, 'Worker', 106,2,120)
 INSERT INTO Phoenix.MedicaidFields VALUES (3, 'ProgramStatus', 108,3,125)

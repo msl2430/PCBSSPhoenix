@@ -9,7 +9,6 @@ namespace Phoenix.Medicaid.Service.Services
     public interface IMedicaidBaseTaskService
     {
         bool IsRunning { get; }
-        IApplicationEventService ApplicationEventService { get; }
         EventLog MedicaidEventLog { get; set; }
         void TaskToRun();
         void CancelTask();
@@ -38,6 +37,12 @@ namespace Phoenix.Medicaid.Service.Services
         protected IOpt61QueueRepository Opt61QueueRepository
         {
             get { return _opt61QueueRepository ?? (_opt61QueueRepository = new Opt61QueueRepository()); }
+        }
+
+        private IOpt66QueueRepository _opt66QueueRepository { get; set; }
+        protected IOpt66QueueRepository Opt66QuqRepository
+        {
+            get { return _opt66QueueRepository ?? (_opt66QueueRepository = new Opt66QueueRepository()); }
         }
     }
 }
