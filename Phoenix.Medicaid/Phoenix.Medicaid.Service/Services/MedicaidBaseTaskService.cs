@@ -1,8 +1,7 @@
-﻿using System.Diagnostics;
-using System.Threading;
-using Phoenix.Core;
+﻿using Phoenix.Core;
 using Phoenix.Models.Repositories.Medicaid;
-using Phoenix.Models.Services.Events;
+using System.Diagnostics;
+using System.Threading;
 
 namespace Phoenix.Medicaid.Service.Services
 {

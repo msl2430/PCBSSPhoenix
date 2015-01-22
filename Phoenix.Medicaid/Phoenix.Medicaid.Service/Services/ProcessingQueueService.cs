@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Phoenix.Core.Constants;
+﻿using Phoenix.Core.Constants;
 using Phoenix.Core.Extensions;
 using Phoenix.Medicaid.Models.OptForms;
 using Phoenix.Medicaid.Service.Logging;
 using Phoenix.Models.Constants;
-using Phoenix.Models.Services.Events;
+using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Phoenix.Medicaid.Service.Services
 {

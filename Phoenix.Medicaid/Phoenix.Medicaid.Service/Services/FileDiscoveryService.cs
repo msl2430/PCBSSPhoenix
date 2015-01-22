@@ -15,7 +15,8 @@ namespace Phoenix.Medicaid.Service.Services
 {
     public sealed class FileDiscoveryService : MedicaidBaseTaskService 
     {
-        private readonly DirectoryInfo _fileDirectoryInfo = new DirectoryInfo(@"D:\Social Services\PCBSSPhoenix\Test Files");
+        //private readonly DirectoryInfo _fileDirectoryInfo = new DirectoryInfo(@"D:\Social Services\PCBSSPhoenix\Test Files");
+        private readonly DirectoryInfo _fileDirectoryInfo = new DirectoryInfo(@"D:\Documents\PCBSS\Test Files");
         private const int FileDiscoveryWaitTime = 5000;// 300000;
 
         public FileDiscoveryService(ILoggingService loggingService)
@@ -55,9 +56,9 @@ namespace Phoenix.Medicaid.Service.Services
                         if (file.Name.Contains("61"))
                         {
                             ProcessFile(file);
-                            if ((new FileInfo(string.Concat(@"D:\Social Services\PCBSSPhoenix\Test Files\Archives", "\\", file.Name))).Exists)
-                                (new FileInfo(string.Concat(@"D:\Social Services\PCBSSPhoenix\Test Files\Archives", "\\", file.Name))).Delete();
-                            file.MoveTo(string.Concat(@"D:\Social Services\PCBSSPhoenix\Test Files\Archives", "\\", file.Name));
+                            if ((new FileInfo(string.Concat(_fileDirectoryInfo.FullName, @"\Archives", "\\", file.Name))).Exists)
+                                (new FileInfo(string.Concat(_fileDirectoryInfo.FullName, @"\Archives", "\\", file.Name))).Delete();
+                            file.MoveTo(string.Concat(_fileDirectoryInfo.FullName, @"\Archives", "\\", file.Name));
                         }
                         base.CancelTask();
                     }
